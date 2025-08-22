@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>上海商銀社群行銷成果報告</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js for data visualization -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Swiper.js for Carousel -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -169,7 +165,6 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- Header & Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="text-xl font-bold text-gray-700">成果報告</div>
@@ -186,10 +181,8 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="container mx-auto p-6 md:p-8">
 
-        <!-- Section: Home / Title -->
         <section id="home" class="text-center py-20 bg-white rounded-2xl shadow-lg mb-12">
             <div class="max-w-4xl mx-auto px-4">
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4" contenteditable="true">上海商銀社群行銷成果報告</h1>
@@ -200,7 +193,6 @@
             </div>
         </section>
 
-        <!-- Section: Project Overview -->
         <section id="overview" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
             <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">專案概述</h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -234,11 +226,9 @@
             </div>
         </section>
 
-        <!-- Section: Strategy & Execution -->
         <section id="strategy" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
             <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">策略與執行</h2>
             
-            <!-- Core Strategy -->
             <div class="mb-12">
                 <h3 class="text-2xl font-semibold mb-6 text-center">核心策略</h3>
                 <div class="grid md:grid-cols-3 gap-8 text-center">
@@ -266,14 +256,12 @@
                 </div>
             </div>
             
-            <!-- Monthly Execution -->
             <div>
                 <h3 class="text-2xl font-semibold mb-6 text-center">月份執行</h3>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div id="calendar-july"></div>
                     <div id="calendar-august"></div>
                 </div>
-                <!-- Modal for post details -->
                 <div id="post-modal" class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center p-4 z-50 hidden">
                     <div class="bg-white rounded-lg max-w-4xl w-full relative max-h-[90vh] overflow-y-auto">
                         <button id="close-modal" class="absolute top-2 right-2 bg-gray-200 rounded-full p-2 text-gray-800 hover:bg-gray-300 z-10">
@@ -285,13 +273,11 @@
             </div>
         </section>
 
-       <!-- Section: Growth Trends -->
-        <section id="growth-trends" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
+       <section id="growth-trends" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
             <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">成長趨勢分析</h2>
             <p class="text-sm text-gray-500 mb-8 text-center">提示：點擊下方表格中的數字即可編輯，上方的折線圖將會自動更新。</p>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Facebook Accounts -->
                 <div class="space-y-8">
                     <div>
                         <h3 class="text-2xl font-semibold mb-4 text-blue-600 flex items-center">
@@ -346,7 +332,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Instagram Accounts -->
                 <div class="space-y-8">
                     <div>
                         <h3 class="text-2xl font-semibold mb-4 text-pink-500 flex items-center">
@@ -365,9 +350,10 @@
                                         <th class="border-b-2 p-2">留言數</th>
                                         <th class="border-b-2 p-2">收藏數</th>
                                         <th class="border-b-2 p-2">分享數</th>
+                                        <th class="border-b-2 p-2">Reels觀看數</th>
                                     </tr>
                                 </thead>
-                                 <tbody>
+                                <tbody>
                                     <tr><td class="border-b p-2">7/30</td><td class="border-b p-2" contenteditable="true">3100</td><td class="border-b p-2" contenteditable="true">12500</td><td class="border-b p-2" contenteditable="true">5</td><td class="border-b p-2" contenteditable="true">0</td><td class="border-b p-2" contenteditable="true">400</td><td class="border-b p-2" contenteditable="true">230</td><td class="border-b p-2" contenteditable="true">0</td></tr>
                                     <tr><td class="border-b p-2">8/6</td><td class="border-b p-2" contenteditable="true">3150</td><td class="border-b p-2" contenteditable="true">18000</td><td class="border-b p-2" contenteditable="true">1200</td><td class="border-b p-2" contenteditable="true">88</td><td class="border-b p-2" contenteditable="true">500</td><td class="border-b p-2" contenteditable="true">150</td><td class="border-b p-2" contenteditable="true">25000</td></tr>
                                     <tr><td class="border-b p-2">8/14</td><td class="border-b p-2" contenteditable="true">3200</td><td class="border-b p-2" contenteditable="true">22000</td><td class="border-b p-2" contenteditable="true">9</td><td class="border-b p-2" contenteditable="true">0</td><td class="border-b p-2" contenteditable="true">150</td><td class="border-b p-2" contenteditable="true">310</td><td class="border-b p-2" contenteditable="true">0</td></tr>
@@ -413,11 +399,9 @@
         </section>
 
 
-        <!-- Section: Results & Analysis -->
         <section id="results" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
             <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">成果數據與分析</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <!-- FB Pukii -->
                 <div class="space-y-8">
                     <h3 class="text-2xl font-semibold mb-4 text-blue-600 flex items-center">
     <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
@@ -426,12 +410,12 @@
                         <h4 class="text-lg font-semibold mb-2 text-center text-gray-700">成長率指標 (%)</h4>
                         <div class="w-full h-48 mb-4"><canvas id="fbPukiiResultChartPercent"></canvas></div>
                         <table id="fbPukiiResultTablePercent" class="w-full text-left border-collapse">
-                             <thead>
-                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
-                            </thead>
-                            <tbody>
-                                 <tr><td class="border-b p-2">觸及率增加</td><td class="border-b p-2">3%</td><td contenteditable="true" class="border-b p-2">?%</td></tr>
-                            </tbody>
+                                <thead>
+                                    <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border-b p-2">觸及率增加</td><td class="border-b p-2">3%</td><td contenteditable="true" class="border-b p-2">?%</td></tr>
+                                </tbody>
                         </table>
                     </div>
                     <div>
@@ -447,8 +431,7 @@
                         </table>
                     </div>
                 </div>
-                <!-- FB CloudBank -->
-                 <div class="space-y-8">
+                <div class="space-y-8">
                     <h3 class="text-2xl font-semibold mb-4 text-blue-600 flex items-center">
     <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
     <span>Cloud Bank數位小鎮</span></h3>
@@ -456,12 +439,12 @@
                         <h4 class="text-lg font-semibold mb-2 text-center text-gray-700">成長率指標 (%)</h4>
                         <div class="w-full h-48 mb-4"><canvas id="fbCloudBankResultChartPercent"></canvas></div>
                         <table id="fbCloudBankResultTablePercent" class="w-full text-left border-collapse">
-                             <thead>
-                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
-                            </thead>
-                            <tbody>
-                                 <tr><td class="border-b p-2">觸及率增加</td><td class="border-b p-2">3%</td><td contenteditable="true" class="border-b p-2">?%</td></tr>
-                            </tbody>
+                                <thead>
+                                    <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border-b p-2">觸及率增加</td><td class="border-b p-2">3%</td><td contenteditable="true" class="border-b p-2">?%</td></tr>
+                                </tbody>
                         </table>
                     </div>
                     <div>
@@ -477,7 +460,6 @@
                         </table>
                     </div>
                 </div>
-                <!-- IG SCSB -->
                 <div class="space-y-8">
                   <h3 class="text-2xl font-semibold mb-4 text-pink-500 flex items-center">
     <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.795 2.013 10.148 2 12.315 2zm-1.161 1.545a3.22 3.22 0 01-2.1-1.122A3.22 3.22 0 016.035 3.5c-1.18.055-1.654.211-2.148.405a3.42 3.42 0 00-1.224 1.224c-.194.494-.35 1.022-.405 2.148-.055 1.18-.066 1.566-.066 3.73s.011 2.55.066 3.73c.055 1.126.211 1.654.405 2.148a3.42 3.42 0 001.224 1.224c.494.194 1.022.35 2.148.405 1.18.055 1.566.066 3.73.066s2.55-.011 3.73-.066c1.126-.055 1.654-.211 2.148-.405a3.42 3.42 0 001.224-1.224c.194-.494.35-1.022.405-2.148.055-1.18.066-1.566.066-3.73s-.011-2.55-.066-3.73c-.055-1.126-.211-1.654-.405-2.148a3.42 3.42 0 00-1.224-1.224c-.494-.194-1.022-.35-2.148-.405-1.18-.055-1.566-.066-3.73-.066s-2.55.011-3.73.066zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 1.545a3.61 3.61 0 110 7.22 3.61 3.61 0 010-7.22zM16.965 6.575a1.23 1.23 0 100 2.46 1.23 1.23 0 000-2.46z" clip-rule="evenodd"></path></svg>
@@ -500,16 +482,15 @@
                         <h4 class="text-lg font-semibold mt-8 mb-2 text-center text-gray-700">數量指標</h4>
                         <div class="w-full h-48 mb-4"><canvas id="igScsbResultChartCount"></canvas></div>
                         <table id="igScsbResultTableCount" class="w-full text-left border-collapse">
-                             <thead>
-                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td class="border-b p-2">Reels 最高觀看數</td><td class="border-b p-2">1000</td><td contenteditable="true" class="border-b p-2">?</td></tr>
-                            </tbody>
+                                <thead>
+                                    <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border-b p-2">Reels 最高觀看數</td><td class="border-b p-2">1000</td><td contenteditable="true" class="border-b p-2">?</td></tr>
+                                </tbody>
                         </table>
                     </div>
                 </div>
-                <!-- IG CloudBank -->
                 <div class="space-y-8">
                     <h3 class="text-2xl font-semibold mb-4 text-pink-500 flex items-center">
     <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.795 2.013 10.148 2 12.315 2zm-1.161 1.545a3.22 3.22 0 01-2.1-1.122A3.22 3.22 0 016.035 3.5c-1.18.055-1.654.211-2.148.405a3.42 3.42 0 00-1.224 1.224c-.194.494-.35 1.022-.405 2.148-.055 1.18-.066 1.566-.066 3.73s.011 2.55.066 3.73c.055 1.126.211 1.654.405 2.148a3.42 3.42 0 001.224 1.224c.494.194 1.022.35 2.148.405 1.18.055 1.566.066 3.73.066s2.55-.011 3.73-.066c1.126-.055 1.654-.211 2.148-.405a3.42 3.42 0 001.224-1.224c.194-.494.35-1.022.405-2.148.055-1.18.066-1.566.066-3.73s-.011-2.55-.066-3.73c-.055-1.126-.211-1.654-.405-2.148a3.42 3.42 0 00-1.224-1.224c-.494-.194-1.022-.35-2.148-.405-1.18-.055-1.566-.066-3.73-.066s-2.55.011-3.73.066zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 1.545a3.61 3.61 0 110 7.22 3.61 3.61 0 010-7.22zM16.965 6.575a1.23 1.23 0 100 2.46 1.23 1.23 0 000-2.46z" clip-rule="evenodd"></path></svg>
@@ -532,7 +513,7 @@
                         <h4 class="text-lg font-semibold mt-8 mb-2 text-center text-gray-700">數量指標</h4>
                         <div class="w-full h-48 mb-4"><canvas id="igCloudBankResultChartCount"></canvas></div>
                         <table id="igCloudBankResultTableCount" class="w-full text-left border-collapse">
-                             <thead>
+                            <thead>
                                 <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
                             </thead>
                             <tbody>
@@ -544,7 +525,6 @@
             </div>
         </section>
 
-        <!-- Section: Insights & Analysis -->
         <section id="insights" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
             <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">洞察與分析</h2>
             <div class="space-y-8">
@@ -559,12 +539,12 @@
                 <div>
                     <h3 class="text-2xl font-semibold mb-3">受眾行為洞察 (Audience Behavior Insights)</h3>
                      <div class="text-gray-600 leading-relaxed space-y-4">
-                        <div contenteditable="true" class="space-y-2">
+                         <div contenteditable="true" class="space-y-2">
                             <p><strong>互動高峰時段：</strong> 數據顯示，粉絲互動高峰主要集中在平日晚間 20:00-22:00 以及週末下午時段。未來發文可優先選擇這些時段，以最大化初期曝光效益。</p>
                             <p><strong>互動類型分析：</strong> Instagram粉絲更傾向於「收藏」知識型與實用型內容，顯示他們將平台作為資訊儲存的工具。Facebook粉絲則更樂於「分享」抽獎活動與優惠資訊，反映出其社群連結的特性。</p>
                             <p><strong>受眾回饋：</strong> 在金融知識相關貼文（如信用卡、基金）下方，粉絲常提出更細節的產品問題，顯示受眾對理財知識有高度需求。這些問題可作為未來FAQ或深度內容企劃的靈感來源。</p>
                         </div>
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
     <div>
         <img src="https://i.postimg.cc/XYtpSycq/image.png" alt="粉絲活躍時段分析圖" class="rounded-lg shadow-md w-full">
         <p class="text-center text-sm text-gray-500 mt-2">圖一：粉絲活躍時段分析圖</p>
@@ -585,7 +565,6 @@
             </div>
         </section>
 
-        <!-- Section: Learning & Reflection -->
         <section id="reflection" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
             <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">學習與反思</h2>
             <div class="space-y-6">
@@ -600,7 +579,7 @@
                 </div>
                 <div>
                     <h3 class="text-2xl font-semibold mb-2">遇到的挑戰</h3>
-               <ul contenteditable="true" class="list-disc list-inside text-gray-600 leading-relaxed">
+                   <ul contenteditable="true" class="list-disc list-inside text-gray-600 leading-relaxed">
                         <li>銀行內部組織龐大，一篇貼文從發想到最終發布，需要經過好幾個關卡的審核，流程非常長，這讓我對專案的時程管理感到非常焦慮。後來我改變了工作習慣，將內容規劃的時程大幅提前，並在每個環節都預留了緩衝時間。</li>
                         <li>面對視覺素材需獨立製作的任務，在零電腦繪圖基礎下，我只能自學並借助AI輔助進行設計。這不僅讓我克服了技術門檻，更成功製作出多張社群素材。</li>
                     </ul>
@@ -613,12 +592,11 @@
             </div>
         </section>
 
-        <!-- Section: Future & Thanks -->
         <section id="future" class="p-8 bg-white rounded-2xl shadow-lg">
             <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">建議</h2>
             <div class="space-y-6">
                  <div>
-                    <ul contenteditable="true" class="text-gray-600 leading-relaxed">
+                     <ul contenteditable="true" class="text-gray-600 leading-relaxed">
                         一、深化粉絲互動
                     </ul>
                     <ul contenteditable="true" class="list-disc list-inside text-gray-600 leading-relaxed">
@@ -637,7 +615,6 @@
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white text-center p-4 mt-12">
         <p>&copy; 2025 洪翊茹. All Rights Reserved.</p>
     </footer>
@@ -1084,19 +1061,22 @@
 
                 for (const tableId in tables) {
                     const tbody = document.getElementById(tableId).querySelector('tbody');
-                    let html = '';
-                    tables[tableId].dates.forEach(date => {
-                        html += `<tr><td class="border-b p-2">${date}</td>`;
-                        tables[tableId].placeholders.forEach(placeholder => {
-                            html += `<td class="border-b p-2" contenteditable="true">${Math.round(parseInt(placeholder) * (0.8 + Math.random() * 0.4))}</td>`;
+                    if(tbody.rows.length === 0) { // Only populate if empty
+                        let html = '';
+                        tables[tableId].dates.forEach(date => {
+                            html += `<tr><td class="border-b p-2">${date}</td>`;
+                            tables[tableId].placeholders.forEach(placeholder => {
+                                html += `<td class="border-b p-2" contenteditable="true">${Math.round(parseInt(placeholder) * (0.8 + Math.random() * 0.4))}</td>`;
+                            });
+                            html += `</tr>`;
                         });
-                        html += `</tr>`;
-                    });
-                    tbody.innerHTML = html;
+                        tbody.innerHTML = html;
+                    }
                 }
             }
             
-            populateTrendTables();
+            // Comment out populateTrendTables to use static HTML data
+            // populateTrendTables();
 
             // Init Result Charts
             initBarChart('fbPukiiResultChartPercent', 'fbPukiiResultTablePercent', '59, 130, 246');
@@ -1126,7 +1106,8 @@
                 { label: '按讚數', color: 'rgb(234, 179, 8)' },
                 { label: '留言數', color: 'rgb(132, 204, 22)' },
                 { label: '收藏數', color: 'rgb(34, 211, 238)' },
-                { label: '分享數', color: 'rgb(124, 58, 237)' }
+                { label: '分享數', color: 'rgb(124, 58, 237)' },
+                { label: 'Reels觀看數', color: 'rgb(168, 85, 247)' }
             ]);
             initTrendChart('igCloudBankTrendChart', 'igCloudBankTrendTable', [
                 { label: '粉絲數量', color: 'rgb(219, 39, 119)' },
