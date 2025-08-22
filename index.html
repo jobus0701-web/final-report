@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>上海商銀社群行銷成果報告</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for data visualization -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Swiper.js for Carousel -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -23,25 +27,23 @@
             width: 100vw;
             position: relative;
         }
-        /* --- NEW: Slideshow Styles with Internal Scrolling --- */
         .slide {
-            display: none; /* Hide all slides by default */
+            display: none;
             position: absolute;
             top: 0; left: 0;
             width: 100%;
             height: 100%;
-            padding-top: 5rem;    /* Space for fixed header */
-            padding-bottom: 3rem; /* Space for footer/arrows */
+            padding-top: 5rem;
+            padding-bottom: 3rem;
             box-sizing: border-box;
-            overflow-y: auto; /* IMPORTANT: Enable vertical scrolling within the slide */
-            justify-content: flex-start; /* Align content to top */
+            overflow-y: auto;
+            justify-content: flex-start;
             align-items: center;
         }
         .slide.active {
-            display: flex; /* Show only the active slide */
+            display: flex;
             flex-direction: column;
         }
-        /* Make the inner container take up the necessary space */
         .slide .container {
             width: 100%;
             max-width: 1152px; /* max-w-6xl */
@@ -49,7 +51,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* --- Side Navigation & Page Arrows --- */
         #slide-nav {
             position: fixed; top: 50%; right: 25px; transform: translateY(-50%); z-index: 100;
             display: flex; flex-direction: column; align-items: center; gap: 10px;
@@ -80,7 +81,6 @@
         .arrow-btn:hover { background-color: rgba(0,0,0,0.7); }
         .arrow-btn.disabled { background-color: rgba(0,0,0,0.2); cursor: not-allowed; }
 
-        /* --- Other Styles --- */
         [contenteditable="true"] { outline: 2px dashed transparent; transition: outline 0.2s ease-in-out; padding: 4px; border-radius: 4px; min-height: 24px; }
         [contenteditable="true"]:hover, [contenteditable="true"]:focus { outline: 2px dashed #38bdf8; background-color: #f0f9ff; }
         .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
@@ -124,7 +124,9 @@
                 <a href="#growth-trends-fb" class="nav-link text-gray-600 hover:text-blue-500 transition">成長趨勢</a>
                 <a href="#results-fb" class="nav-link text-gray-600 hover:text-blue-500 transition">成果比較</a>
                 <a href="#insights-content" class="nav-link text-gray-600 hover:text-blue-500 transition">洞察與分析</a>
+                <a href="#project-review" class="nav-link text-gray-600 hover:text-blue-500 transition">專案覆盤</a>
                 <a href="#reflection" class="nav-link text-gray-600 hover:text-blue-500 transition">學習與反思</a>
+                <a href="#competitor-analysis" class="nav-link text-gray-600 hover:text-blue-500 transition">競品分析</a>
                 <a href="#future" class="nav-link text-gray-600 hover:text-blue-500 transition">建議</a>
             </div>
         </nav>
@@ -138,11 +140,13 @@
         <a href="#growth-trends-ig" class="nav-link"><span class="tooltip">成長趨勢 (IG)</span></a>
         <a href="#results-fb" class="nav-link"><span class="tooltip">成果數據 (FB)</span></a>
         <a href="#results-ig" class="nav-link"><span class="tooltip">成果數據 (IG)</span></a>
-        <a href="#insights-content" class="nav-link"><span class="tooltip">洞察 (內容與趨勢)</span></a>
-        <a href="#insights-audience" class="nav-link"><span class="tooltip">洞察 (受眾行為)</span></a>
+        <a href="#insights-content" class="nav-link"><span class="tooltip">洞察 (內容)</span></a>
+        <a href="#insights-audience" class="nav-link"><span class="tooltip">洞察 (受眾)</span></a>
+        <a href="#project-review" class="nav-link"><span class="tooltip">專案覆盤</span></a>
         <a href="#reflection" class="nav-link"><span class="tooltip">學習與反思</span></a>
+        <a href="#competitor-analysis" class="nav-link"><span class="tooltip">競品分析</span></a>
         <a href="#future" class="nav-link"><span class="tooltip">建議</span></a>
-        <div id="page-indicator">1 / 11</div>
+        <div id="page-indicator">1 / 13</div>
     </nav>
     
     <div id="slide-arrows">
@@ -294,17 +298,25 @@
                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                    <div class="space-y-4">
                        <h3 class="text-2xl font-semibold text-blue-600 flex items-center">
-                           <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
+                           <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 ..."></path></svg>
                            <span>pukii粉絲團</span>
                        </h3>
-                        <table class="w-full text-left border-collapse"><thead><tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">原先數值</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">最終數值</th><th class="border-b-2 p-2 text-green-600">最終提升率</th></tr></thead><tbody><tr><td class="border-b p-2">觸及率</td><td class="border-b p-2" contenteditable="true">2.5%</td><td class="border-b p-2">提升 3%</td><td class="border-b p-2 font-bold" contenteditable="true">6.2%</td><td class="border-b p-2 font-bold text-green-600">148%</td></tr><tr><td class="border-b p-2">平均互動數</td><td class="border-b p-2" contenteditable="true">250</td><td class="border-b p-2">提升至 300</td><td class="border-b p-2 font-bold" contenteditable="true">585</td><td class="border-b p-2 font-bold text-green-600">134%</td></tr></tbody></table>
+                       <div class="grid grid-cols-2 gap-4 h-48">
+                           <div><canvas id="fbPukiiResultChartRate"></canvas></div>
+                           <div><canvas id="fbPukiiResultChartCount"></canvas></div>
+                       </div>
+                        <table id="fbPukiiResultTable" class="w-full text-left border-collapse text-sm"><thead><tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">原先數值</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">最終數值</th><th class="border-b-2 p-2 text-green-600">最終提升率</th></tr></thead><tbody><tr><td class="border-b p-2">觸及率</td><td class="border-b p-2" contenteditable="true">2.5%</td><td class="border-b p-2">提升 3%</td><td class="border-b p-2 font-bold" contenteditable="true">6.2%</td><td class="border-b p-2 font-bold text-green-600">148%</td></tr><tr><td class="border-b p-2">平均互動數</td><td class="border-b p-2" contenteditable="true">250</td><td class="border-b p-2">提升至 300</td><td class="border-b p-2 font-bold" contenteditable="true">585</td><td class="border-b p-2 font-bold text-green-600">134%</td></tr></tbody></table>
                    </div>
                    <div class="space-y-4">
                        <h3 class="text-2xl font-semibold text-blue-600 flex items-center">
-                          <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
+                          <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 ..."></path></svg>
                            <span>Cloud Bank數位小鎮</span>
                        </h3>
-                       <table class="w-full text-left border-collapse"><thead><tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">原先數值</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">最終數值</th><th class="border-b-2 p-2 text-green-600">最終提升率</th></tr></thead><tbody><tr><td class="border-b p-2">觸及率</td><td class="border-b p-2" contenteditable="true">65.6%</td><td class="border-b p-2">提升 3%</td><td class="border-b p-2 font-bold" contenteditable="true">190.7%</td><td class="border-b p-2 font-bold text-green-600">190.7%</td></tr><tr><td class="border-b p-2">平均互動數</td><td class="border-b p-2" contenteditable="true">40</td><td class="border-b p-2">提升至 50</td><td class="border-b p-2 font-bold" contenteditable="true">167</td><td class="border-b p-2 font-bold text-green-600">317.5%</td></tr></tbody></table>
+                       <div class="grid grid-cols-2 gap-4 h-48">
+                           <div><canvas id="fbCloudBankResultChartRate"></canvas></div>
+                           <div><canvas id="fbCloudBankResultChartCount"></canvas></div>
+                       </div>
+                       <table id="fbCloudBankResultTable" class="w-full text-left border-collapse text-sm"><thead><tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">原先數值</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">最終數值</th><th class="border-b-2 p-2 text-green-600">最終提升率</th></tr></thead><tbody><tr><td class="border-b p-2">觸及率</td><td class="border-b p-2" contenteditable="true">65.6%</td><td class="border-b p-2">提升 3%</td><td class="border-b p-2 font-bold" contenteditable="true">190.7%</td><td class="border-b p-2 font-bold text-green-600">190.7%</td></tr><tr><td class="border-b p-2">平均互動數</td><td class="border-b p-2" contenteditable="true">40</td><td class="border-b p-2">提升至 50</td><td class="border-b p-2 font-bold" contenteditable="true">167</td><td class="border-b p-2 font-bold text-green-600">317.5%</td></tr></tbody></table>
                    </div>
                </div>
            </div>
@@ -316,17 +328,25 @@
                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                    <div class="space-y-4">
                        <h3 class="text-2xl font-semibold text-pink-500 flex items-center">
-                          <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 ..."></path></svg>
+                          <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 ..."></path></svg>
                            <span>scsb.tw</span>
                        </h3>
-                       <table class="w-full text-left border-collapse"><thead><tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">原先數值</th><th class="border-b-2 p-2">目標 (2個月)</th><th class="border-b-2 p-2">最終數值</th><th class="border-b-2 p-2 text-green-600">最終提升率</th></tr></thead><tbody><tr><td class="border-b p-2">粉絲數成長</td><td class="border-b p-2" contenteditable="true">928</td><td class="border-b p-2">成長 10%</td><td class="border-b p-2 font-bold" contenteditable="true">1004</td><td class="border-b p-2 font-bold text-green-600">8.2%</td></tr><tr><td class="border-b p-2">觸及率</td><td class="border-b p-2" contenteditable="true">50.2%</td><td class="border-b p-2">提升至 10%</td><td class="border-b p-2 font-bold" contenteditable="true">98.7%</td><td class="border-b p-2 font-bold text-green-600">96.6%</td></tr><tr><td class="border-b p-2">參與率</td><td class="border-b p-2" contenteditable="true">1.5%</td><td class="border-b p-2">提升至 3%</td><td class="border-b p-2 font-bold" contenteditable="true">2.98%</td><td class="border-b p-2 font-bold text-green-600">98.7%</td></tr></tbody></table>
+                       <div class="grid grid-cols-2 gap-4 h-48">
+                           <div><canvas id="igScsbResultChartRate"></canvas></div>
+                           <div><canvas id="igScsbResultChartCount"></canvas></div>
+                       </div>
+                       <table id="igScsbResultTable" class="w-full text-left border-collapse text-sm"><thead><tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">原先數值</th><th class="border-b-2 p-2">目標 (2個月)</th><th class="border-b-2 p-2">最終數值</th><th class="border-b-2 p-2 text-green-600">最終提升率</th></tr></thead><tbody><tr><td class="border-b p-2">粉絲數</td><td class="border-b p-2" contenteditable="true">928</td><td class="border-b p-2">成長 10%</td><td class="border-b p-2 font-bold" contenteditable="true">1004</td><td class="border-b p-2 font-bold text-green-600">8.2%</td></tr><tr><td class="border-b p-2">觸及率</td><td class="border-b p-2" contenteditable="true">50.2%</td><td class="border-b p-2">提升至 10%</td><td class="border-b p-2 font-bold" contenteditable="true">98.7%</td><td class="border-b p-2 font-bold text-green-600">96.6%</td></tr><tr><td class="border-b p-2">參與率</td><td class="border-b p-2" contenteditable="true">1.5%</td><td class="border-b p-2">提升至 3%</td><td class="border-b p-2 font-bold" contenteditable="true">2.98%</td><td class="border-b p-2 font-bold text-green-600">98.7%</td></tr></tbody></table>
                    </div>
                    <div class="space-y-4">
                        <h3 class="text-2xl font-semibold text-pink-500 flex items-center">
-                          <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 ..."></path></svg>
+                          <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 ..."></path></svg>
                            <span>cloudbank.tw</span>
                        </h3>
-                        <table class="w-full text-left border-collapse"><thead><tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">原先數值</th><th class="border-b-2 p-2">目標 (2個月)</th><th class="border-b-2 p-2">最終數值</th><th class="border-b-2 p-2 text-green-600">最終提升率</th></tr></thead><tbody><tr><td class="border-b p-2">粉絲數成長</td><td class="border-b p-2" contenteditable="true">298</td><td class="border-b p-2">成長 10%</td><td class="border-b p-2 font-bold" contenteditable="true">428</td><td class="border-b p-2 font-bold text-green-600">43.6%</td></tr><tr><td class="border-b p-2">觸及率</td><td class="border-b p-2" contenteditable="true">10%</td><td class="border-b p-2">提升至 10%</td><td class="border-b p-2 font-bold" contenteditable="true">1497.1%</td><td class="border-b p-2 font-bold text-green-600">14871%</td></tr><tr><td class="border-b p-2">參與率</td><td class="border-b p-2" contenteditable="true">2.5%</td><td class="border-b p-2">提升至 3%</td><td class="border-b p-2 font-bold" contenteditable="true">7.49%</td><td class="border-b p-2 font-bold text-green-600">199.6%</td></tr></tbody></table>
+                       <div class="grid grid-cols-2 gap-4 h-48">
+                           <div><canvas id="igCloudBankResultChartRate"></canvas></div>
+                           <div><canvas id="igCloudBankResultChartCount"></canvas></div>
+                       </div>
+                        <table id="igCloudBankResultTable" class="w-full text-left border-collapse text-sm"><thead><tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">原先數值</th><th class="border-b-2 p-2">目標 (2個月)</th><th class="border-b-2 p-2">最終數值</th><th class="border-b-2 p-2 text-green-600">最終提升率</th></tr></thead><tbody><tr><td class="border-b p-2">粉絲數</td><td class="border-b p-2" contenteditable="true">298</td><td class="border-b p-2">成長 10%</td><td class="border-b p-2 font-bold" contenteditable="true">428</td><td class="border-b p-2 font-bold text-green-600">43.6%</td></tr><tr><td class="border-b p-2">觸及率</td><td class="border-b p-2" contenteditable="true">10%</td><td class="border-b p-2">提升至 10%</td><td class="border-b p-2 font-bold" contenteditable="true">1497.1%</td><td class="border-b p-2 font-bold text-green-600">14871%</td></tr><tr><td class="border-b p-2">參與率</td><td class="border-b p-2" contenteditable="true">2.5%</td><td class="border-b p-2">提升至 3%</td><td class="border-b p-2 font-bold" contenteditable="true">7.49%</td><td class="border-b p-2 font-bold text-green-600">199.6%</td></tr></tbody></table>
                    </div>
                </div>
            </div>
@@ -381,6 +401,38 @@
             </div>
         </section>
 
+        <section id="project-review" class="slide">
+            <div class="container p-8 bg-white rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">壹、實習專案計畫與執行覆盤</h2>
+                <h3 class="text-xl font-semibold mb-3">1.1 規劃與執行對照表</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th scope="col" class="py-3 px-6">規劃項目 (月初目標)</th>
+                                <th scope="col" class="py-3 px-6">執行狀況</th>
+                                <th scope="col" class="py-3 px-6">成果說明與量化數據</th>
+                                <th scope="col" class="py-3 px-6">差異分析與反思 (為何未完成/延遲)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b"><td class="py-4 px-6 font-medium text-gray-900">【內容製作類】<br>- 製作 8 篇社群貼文</td><td class="py-4 px-6">✓ 已完成</td><td class="py-4 px-6" contenteditable="true">- 實際完成 8 篇貼文，總觸及數 XXXX 人，平均互動率 X.X%。<br>- 其中「XXXX」主題貼文成效最佳。</td><td class="py-4 px-6">-</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="py-4 px-6 font-medium text-gray-900">- 拍攝 2 支 Reels 短影音</td><td class="py-4 px-6">△ 部分完成</td><td class="py-4 px-6" contenteditable="true">- 完成 1 支「XXXX」主題短影音，觀看數 XXXX 次。</td><td class="py-4 px-6" contenteditable="true">- 第 2 支腳本因需與產品部門確認細節，時程較預期長，目前進度在腳本二修。</td></tr>
+                            <tr class="bg-white border-b"><td class="py-4 px-6 font-medium text-gray-900">【行銷活動類】<br>- 規劃並執行父親節抽獎</td><td class="py-4 px-6">✓ 已完成</td><td class="py-4 px-6" contenteditable="true">- 活動順利上線，帶來粉絲增長 XXX 人，互動數 XXXX 次。</td><td class="py-4 px-6">-</td></tr>
+                            <tr class="bg-gray-50 border-b"><td class="py-4 px-6 font-medium text-gray-900">【數據分析類】<br>- 每週產出社群數據報表</td><td class="py-4 px-6">✓ 已完成</td><td class="py-4 px-6" contenteditable="true">- 累計完成 4 份週報，並於部門會議分享。</td><td class="py-4 px-6">-</td></tr>
+                             <tr class="bg-white border-b"><td class="py-4 px-6 font-medium text-gray-900">【其他項目】<br>- 競品社群資料搜集</td><td class="py-4 px-6">X 未完成</td><td class="py-4 px-6">-</td><td class="py-4 px-6" contenteditable="true">- 初期將主要精力投入在內容製作與活動執行，此項目規劃在實習後期進行，現已整合至結案報告中。</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 mt-6">1.2 結語：總結與學習</h3>
+                <div class="text-gray-600 space-y-2 text-sm" contenteditable="true">
+                    <p><strong>a. 主要斬獲：</strong><br>「本次實習期間，我成功完成了 8 篇貼文製作與父親節抽獎活動的完整執行，不僅熟悉了銀行社群內容的產出流程，也透過數據分析，初步掌握了粉絲的內容偏好。」</p>
+                    <p><strong>b. 挑戰與學習：</strong><br>「在執行過程中，我也體會到跨部門溝通的時程管理是一大挑戰，如短影音腳本的確認流程。這讓我學習到，在大型組織中，專案規劃時必須預留更充足的緩衝時間，並進行更積極主動的進度追蹤。這是我本次實習最寶貴的學習之一。」</p>
+                    <p><strong>c. 未來展望：</strong><br>「感謝部門給予的機會與指導，讓我從實務中學習。未來若有機會，希望能更深入參與專案的前期策略規劃，將本次所學應用於其中。」</p>
+                </div>
+            </div>
+        </section>
+
         <section id="reflection" class="slide">
             <div class="container p-8 bg-white rounded-2xl shadow-lg">
                 <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">學習與反思</h2>
@@ -409,6 +461,29 @@
             </div>
         </section>
 
+        <section id="competitor-analysis" class="slide">
+            <div class="container p-8 bg-white rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">貳、標竿銀行社群競品分析 — 以中國信託為例</h2>
+                <div class="space-y-4 text-gray-600" contenteditable="true">
+                    <p><strong>2.1 分析摘要</strong><br>「為深入了解市場領先者的社群策略，本章節選定中國信託銀行為標竿，分析其在 Instagram 與 Facebook 的經營手法，並從中提煉出三大值得本行借鏡之處。」</p>
+                    
+                    <p><strong>2.2 競品策略拆解</strong></p>
+                    <ul class="list-disc list-inside ml-4 space-y-2">
+                        <li><strong>內容策略：理財知識 IP 化，建立專業又親民的形象</strong><br><u>觀察</u>： 中信 IG 長期經營「#理財攻略」等知識型內容單元，將複雜的金融議題轉化為簡單的圖文懶人包。FB 則常用「中信小編」的口吻與粉絲互動，拉近距離。<br><u>優勢</u>： 成功塑造了「想學理財，可以來中信社群看看」的品牌印象，而不只是個發布優惠訊息的帳號。</li>
+                        <li><strong>互動策略：善用平台工具，引導粉絲深度參與</strong><br><u>觀察</u>： IG 限時動態頻繁使用「你問我答」、「票選活動」等功能，收集粉絲意見。抽獎活動的留言要求常與理財議題結合（例如：留言分享你的存錢目標），而非單純的標記朋友。<br><u>優勢</u>： 互動不僅是為了衝高數字，更能從中了解粉絲輪廓與需求，一舉兩得。</li>
+                        <li><strong>視覺策略：風格統一，打造高質感品牌視覺</strong><br><u>觀察</u>： 中信 IG 的視覺設計風格（色票、字體、版面）高度統一，即使是不同主題的貼文，也能一眼認出是中信的內容。<br><u>優勢</u>： 在使用者快速滑動的社群生態中，高識別度的視覺能有效抓住眼球，並累積品牌資產。</li>
+                    </ul>
+
+                    <p><strong>2.3 對本行社群經營之具體建議</strong></p>
+                     <ul class="list-decimal list-inside ml-4 space-y-2">
+                        <li><strong>建立本行「內容主題標籤」，深化知識內容</strong><br><u>基於觀察</u>： 借鏡中信的「理財攻略」單元。<br><u>具體做法</u>： 建議本行可規劃如「#XX理財指南針」或「#XX財富週報」等系列單元，固定產出知識型內容，培養粉絲的閱讀習慣。</li>
+                        <li><strong>規劃「主題式互動」，提升粉絲參與品質</strong><br><u>基於觀察</u>： 借鏡中信的深度互動設計。<br><u>具體做法</u>： 未來的抽獎或互動活動，可嘗試要求粉絲分享「最想去的旅遊地點」(搭配旅遊卡)或「給社會新鮮人的理財建議」，讓互動更有價值。</li>
+                        <li><strong>制定社群「視覺規範」，統一品牌形象</strong><br><u>基於觀察</u>： 借鏡中信的統一視覺風格。<br><u>具體做法</u>： 建議可為本行社群制定一套簡潔的視覺規範 (VI)，包含 2-3 個標準色、固定字體與版型，讓整體視覺更具專業感與辨識度。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section id="future" class="slide">
             <div class="container max-w-4xl p-8 bg-white rounded-2xl shadow-lg">
                 <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">建議</h2>
@@ -433,7 +508,7 @@
     <div id="post-modal" class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center p-4 z-[200] hidden">
         <div class="bg-white rounded-lg max-w-5xl w-full relative max-h-[90vh] overflow-y-auto">
             <button id="close-modal" class="absolute top-2 right-2 bg-gray-200 rounded-full p-2 text-gray-800 hover:bg-gray-300 z-10">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <div id="modal-content" class="p-6 md:p-8"></div>
         </div>
@@ -441,9 +516,7 @@
     
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    
-    // --- Slideshow Navigation Logic ---
-    const slides = document.querySelectorAll('.slide');
+    const slides = Array.from(document.querySelectorAll('.slide'));
     const sideNavLinks = document.querySelectorAll('#slide-nav .nav-link');
     const topNavLinks = document.querySelectorAll('header .nav-link');
     const pageIndicator = document.getElementById('page-indicator');
@@ -475,7 +548,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.hash;
-            const targetIndex = Array.from(slides).findIndex(slide => slide.id === targetId.substring(1));
+            const targetIndex = slides.findIndex(slide => slide.id === targetId.substring(1));
             if(targetIndex !== -1) showSlide(targetIndex);
         });
     });
@@ -484,7 +557,6 @@ document.addEventListener('DOMContentLoaded', function () {
     prevBtn.addEventListener('click', () => { if (currentSlide > 0) showSlide(currentSlide - 1); });
     showSlide(0);
 
-    // --- Post Data & Modal Logic ---
     const postData = {
          '7-10': { type: 'image', account: 'cloudbank.tw', avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAHV8DaB1IYUHQXfv-LmB8tVNxjkWZ5VcZQ&s', images: [ 'https://i.postimg.cc/MTgvYPYZ/710-10-png.png', 'https://i.postimg.cc/brtWGTg2/2.png', 'https://i.postimg.cc/fbyHtCTT/3.png', 'https://i.postimg.cc/3RDn9wvs/4.png', 'https://i.postimg.cc/sxdKLRPv/5.png', 'https://i.postimg.cc/CMkcqzYD/6.png' ], caption: '🍌小小兵出道🔟週年，童年回憶殺🍌還記得第一次被小小兵萌翻的瞬間嗎？這群黃色小可愛已經在大螢幕上陪伴我們整整十年了！🎁跟著小小兵的腳步，解鎖所有任務，把好禮通通帶回家', summary: '本篇貼文以 小小兵出道 10 週年 為主題，結合 上海商銀數位帳戶推廣，透過任務闖關形式介紹活動玩法：<br>主線任務：申辦 CB 數位帳戶副本任務：<br>消費滿額、APP 綁定、好友推薦 → 兌換/抽小小兵限量周邊<br>終極獎勵：完成全部任務即可抽大阪來回機票。<br>貼文核心在於：用 IP 熱度＋遊戲化任務，引導粉絲了解數位帳戶申辦流程並參與活動。', instagram: { likes: '5', comments: '0', performance: '觸及人數: 84 | 分享數: 0 | 收藏數: 0' }, facebook: { likes: '13', comments: '0', shares: '2', performance: '觸及人數: 1066 | 互動次數: 15' } },
          '7-22': { type: 'reel', account: 'cloudbank.tw', avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAHV8DaB1IYUHQXfv-LmB8tVNxjkWZ5VcZQ&s', image: 'https://i.postimg.cc/8zLHFCvc/2025-08-19-141029.png', video: 'https://res.cloudinary.com/dwasgemqs/video/upload/v1755583580/0722%E6%93%81%E6%9C%89%E5%B0%8F%E5%B0%8F%E5%85%B5Debit%E5%8D%A1_%E4%BA%AB%E4%B8%8D%E5%AE%8C%E7%9A%84%E6%B6%88%E8%B2%BB%E9%A9%9A%E5%96%9C_-_Compressed_with_FlexClip_bpwjw1.mp4', caption: '只要擁有數位帳戶+小小兵Debit卡，驚喜優惠享不完！😱💛🌟 限量小小兵週邊、甚至機票大獎等你抽！', summary: '小小兵Debit卡 + 數位帳戶的專屬優惠，透過限量週邊、抽獎與高利活存、刷卡回饋吸引年輕族群，核心訊息是「開卡方便、回饋多、驚喜不斷」，同時搭配熱門消費場景（LINE Pay、UberEats、Netflix 等）提升貼近度與實用性，整體語氣活潑、俏皮，符合小小兵萌系形象與數位銀行年輕化定位。', instagram: { likes: '11', comments: '0', performance: '觀看次數: 235 | 觸及人數: 116 | 分享數: 1 | 收藏數: 0' }, facebook: { likes: '8', comments: '2', shares: '2', performance: '觀看次數: 3,117 | 觸及人數: 366 | 互動次數: 12' } },
@@ -498,40 +570,6 @@ document.addEventListener('DOMContentLoaded', function () {
          '8-28': { type: 'reel', account: 'scsb.tw', avatar: 'https://www.scsb.com.tw/content/images/index_img/share/FB.jpg', image: 'https://i.postimg.cc/sDsVRC1d/2.jpg', video: 'https://res.cloudinary.com/dwasgemqs/video/upload/v1755583925/0827%E6%96%B0%E7%B6%B2%E9%8A%80_GO_%E8%B1%AA%E7%A6%AE%E6%8A%BD%E5%9B%9E%E5%AE%B6_-_Compressed_with_FlexClip_fk9jvw.mp4', caption: '新網銀 GO！豪禮抽回家🎁', summary: '以「新網銀」上線為主題，強調其快速登入（QR Code 掃碼）、多元金融功能（轉帳、換匯、定存、基金、貸款）及個人化介面優勢，同時設計抽獎活動（7-11 禮券、無線充電座）吸引用戶登入與操作。核心在於 推廣新網銀使用率，並透過任務式抽獎提升體驗與黏著度。', instagram: { likes: '?', comments: '?', performance: 'N/A' }, facebook: { likes: '?', comments: '?', shares: '?', performance: 'N/A' } },
     };
     
-    // --- Calendar, Modal and Chart Logic (No major changes needed) ---
-    function createPerformanceCharts(postId, post) {
-        function parsePerformanceData(platformData) {
-            const labels = [], data = []; if (!platformData) return null;
-            if (platformData.likes && platformData.likes !== '?') { labels.push('按讚數'); data.push(parseInt(platformData.likes.replace(/,/g, '')) || 0); }
-            if (platformData.comments && platformData.comments !== '?') { labels.push('留言數'); data.push(parseInt(platformData.comments.replace(/,/g, '')) || 0); }
-            if (platformData.shares && platformData.shares !== '?') { labels.push('分享數'); data.push(parseInt(platformData.shares.replace(/,/g, '')) || 0); }
-            const perfString = platformData.performance || '';
-            const v = perfString.match(/觀看次數: ([\d,]+)/), s = perfString.match(/分享數: ([\d,]+)/), sv = perfString.match(/收藏數: ([\d,]+)/);
-            if (v && v[1] !== '?') { labels.push('觀看次數'); data.push(parseInt(v[1].replace(/,/g, '')) || 0); }
-            if (s && s[1] !== '?' && !labels.includes('分享數')) { labels.push('分享數'); data.push(parseInt(s[1].replace(/,/g, '')) || 0); }
-            if (sv && sv[1] !== '?') { labels.push('收藏數'); data.push(parseInt(sv[1].replace(/,/g, '')) || 0); }
-            return { labels, data };
-        }
-        const igData = parsePerformanceData(post.instagram), fbData = parsePerformanceData(post.facebook);
-        const uniqueId = `${postId}-${post.account.replace('.','-')}`;
-        if (igData && igData.data.length > 0) new Chart(document.getElementById(`chart-ig-${uniqueId}`).getContext('2d'), { type: 'bar', data: { labels: igData.labels, datasets: [{ label: 'Instagram 成效', data: igData.data, backgroundColor: 'rgba(219, 39, 119, 0.6)', borderColor: 'rgba(219, 39, 119, 1)', borderWidth: 1 }] }, options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true } } } });
-        if (fbData && fbData.data.length > 0) new Chart(document.getElementById(`chart-fb-${uniqueId}`).getContext('2d'), { type: 'bar', data: { labels: fbData.labels, datasets: [{ label: 'Facebook 成效', data: fbData.data, backgroundColor: 'rgba(59, 130, 246, 0.6)', borderColor: 'rgba(59, 130, 246, 1)', borderWidth: 1 }] }, options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true } } } });
-    }
-    const highlightedDates = { 7: [10, 22, 28, 30], 8: [6, 14, 21, 22, 26, 28] };
-    function createCalendar(containerId, year, month) {
-        const c = document.getElementById(containerId), m = ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"], d = ['日','一','二','三','四','五','六'];
-        const f = new Date(year, month - 1, 1).getDay(), i = new Date(year, month, 0).getDate();
-        let h = `<div class="p-4 bg-gray-50 rounded-lg"><h4 class="text-xl font-bold text-center mb-4">${year} / ${m[month - 1]}</h4><div class="calendar-grid text-sm">`;
-        d.forEach(day => { h += `<div class="font-semibold text-center text-gray-500">${day}</div>`; });
-        for (let j = 0; j < f; j++) h += `<div></div>`;
-        for (let day = 1; day <= i; day++) {
-            const isH = highlightedDates[month] && highlightedDates[month].includes(day);
-            h += `<div class="${isH?'calendar-day highlighted-date':'calendar-day'}" ${isH?`data-postid="${month}-${day}"`:''}>${day}</div>`;
-        }
-        h += `</div></div>`; c.innerHTML = h;
-    }
-    createCalendar('calendar-july', 2025, 7); createCalendar('calendar-august', 2025, 8);
-    const modal = document.getElementById('post-modal'), closeModalBtn = document.getElementById('close-modal'), modalContent = document.getElementById('modal-content');
     function createPostHtml(post, postId, titleSuffix = '') {
         const simplifiedDates = ['8-21', '8-22', '8-26', '8-28'];
         let mediaHtml = '', postIconHtml = '', aspectRatioClass = post.type === 'reel' ? 'aspect-ratio-9-16' : 'aspect-ratio-4-5';
@@ -564,14 +602,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
     modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.add('hidden'); });
+    
     function initTrendChart(canvasId, tableId, datasetConfigs) {
         const table = document.getElementById(tableId), canvas = document.getElementById(canvasId); if (!canvas) return; const ctx = canvas.getContext('2d');
         function getData() {
             const rows = table.querySelectorAll('tbody tr'), labels = [], data = Array.from({ length: datasetConfigs.length }, () => []);
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('td'); labels.push(cells[0].innerText);
-                for (let i = 0; i < datasetConfigs.length; i++) data[i].push(parseFloat(cells[i + 1].innerText) || 0);
-            }); return { labels, data };
+            rows.forEach(row => { const cells = row.querySelectorAll('td'); labels.push(cells[0].innerText); for (let i = 0; i < datasetConfigs.length; i++) data[i].push(parseFloat(cells[i + 1].innerText) || 0); }); return { labels, data };
         }
         const initial = getData(), datasets = datasetConfigs.map((c, i) => ({ label: c.label, data: initial.data[i], borderColor: c.color, backgroundColor: c.color.replace(')', ', 0.5)').replace('rgb', 'rgba'), fill: false, tension: 0.1 }));
         const chart = new Chart(ctx, { type: 'line', data: { labels: initial.labels, datasets: datasets }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true } } } });
@@ -581,6 +617,61 @@ document.addEventListener('DOMContentLoaded', function () {
     initTrendChart('fbCloudBankTrendChart', 'fbCloudBankTrendTable', [ { label: '粉絲數量', color: 'rgb(59, 130, 246)' }, { label: '觸及數', color: 'rgb(34, 197, 94)' }, { label: '互動數', color: 'rgb(245, 158, 11)' }, { label: 'Reels觀看數', color: 'rgb(139, 92, 246)' } ]);
     initTrendChart('igScsbTrendChart', 'igScsbTrendTable', [ { label: '粉絲數量', color: 'rgb(219, 39, 119)' }, { label: '觸及數', color: 'rgb(244, 63, 94)' }, { label: '按讚數', color: 'rgb(234, 179, 8)' }, { label: '留言數', color: 'rgb(132, 204, 22)' }, { label: '收藏數', color: 'rgb(34, 211, 238)' }, { label: '分享數', color: 'rgb(124, 58, 237)' } ]);
     initTrendChart('igCloudBankTrendChart', 'igCloudBankTrendTable', [ { label: '粉絲數量', color: 'rgb(219, 39, 119)' }, { label: '觸及數', color: 'rgb(244, 63, 94)' }, { label: '按讚數', color: 'rgb(234, 179, 8)' }, { label: '留言數', color: 'rgb(132, 204, 22)' }, { label: '收藏數', color: 'rgb(34, 211, 238)' }, { label: '分享數', color: 'rgb(124, 58, 237)' }, { label: 'Reels觀看數', color: 'rgb(168, 85, 247)' } ]);
+
+    // --- NEW: Result Comparison Chart Logic ---
+    function initResultChart(rateCanvasId, countCanvasId, tableId, color) {
+        const table = document.getElementById(tableId);
+        const rateCanvas = document.getElementById(rateCanvasId);
+        const countCanvas = document.getElementById(countCanvasId);
+        if (!table || !rateCanvas || !countCanvas) return;
+
+        function getData() {
+            const rateLabels = [], rateData = { original: [], final: [] };
+            const countLabels = [], countData = { original: [], final: [] };
+            table.querySelectorAll('tbody tr').forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const label = cells[0].innerText;
+                const originalVal = parseFloat(cells[1].innerText) || 0;
+                const finalVal = parseFloat(cells[3].innerText) || 0;
+                if (label.includes('率')) {
+                    rateLabels.push(label);
+                    rateData.original.push(originalVal);
+                    rateData.final.push(finalVal);
+                } else {
+                    countLabels.push(label);
+                    countData.original.push(originalVal);
+                    countData.final.push(finalVal);
+                }
+            });
+            return { rateLabels, rateData, countLabels, countData };
+        }
+        
+        const chartData = getData();
+        const chartOptions = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'top' } }, scales: { y: { beginAtZero: true } } };
+
+        new Chart(rateCanvas.getContext('2d'), {
+            type: 'bar',
+            data: { labels: chartData.rateLabels, datasets: [
+                { label: '原先數值', data: chartData.rateData.original, backgroundColor: `rgba(${color}, 0.4)` },
+                { label: '最終數值', data: chartData.rateData.final, backgroundColor: `rgba(${color}, 0.8)` }
+            ]},
+            options: { ...chartOptions, plugins: { ...chartOptions.plugins, title: { display: true, text: '成長率指標 (%)'}}}
+        });
+
+        new Chart(countCanvas.getContext('2d'), {
+            type: 'bar',
+            data: { labels: chartData.countLabels, datasets: [
+                { label: '原先數值', data: chartData.countData.original, backgroundColor: `rgba(${color}, 0.4)` },
+                { label: '最終數值', data: chartData.countData.final, backgroundColor: `rgba(${color}, 0.8)` }
+            ]},
+            options: { ...chartOptions, plugins: { ...chartOptions.plugins, title: { display: true, text: '數量指標'}}}
+        });
+    }
+
+    initResultChart('fbPukiiResultChartRate', 'fbPukiiResultChartCount', 'fbPukiiResultTable', '59, 130, 246');
+    initResultChart('fbCloudBankResultChartRate', 'fbCloudBankResultChartCount', 'fbCloudBankResultTable', '59, 130, 246');
+    initResultChart('igScsbResultChartRate', 'igScsbResultChartCount', 'igScsbResultTable', '219, 39, 119');
+    initResultChart('igCloudBankResultChartRate', 'igCloudBankResultChartCount', 'igCloudBankResultTable', '219, 39, 119');
 });
 </script>
 </body>
