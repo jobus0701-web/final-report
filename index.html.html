@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海商銀社群行銷成果報告</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Swiper.js for Carousel -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        /* Style for contenteditable elements to indicate they are editable */
+        [contenteditable="true"] {
+            outline: 2px dashed transparent;
+            transition: outline 0.2s ease-in-out;
+            padding: 4px;
+            border-radius: 4px;
+            min-height: 24px;
+        }
+        [contenteditable="true"]:hover,
+        [contenteditable="true"]:focus {
+            outline: 2px dashed #38bdf8; /* Light blue dash on hover/focus */
+            background-color: #f0f9ff;
+        }
+        /* Calendar specific styles */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+        .calendar-day {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+        }
+        .highlighted-date {
+            background-color: #374151;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .highlighted-date:hover {
+            background-color: #111827;
+        }
+
+        /* Instagram Post Mockup Styles */
+        .ig-mockup {
+            width: 100%;
+            max-width: 380px;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            background-color: #fff;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .ig-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+        .ig-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            background-color: #efefef;
+            object-fit: cover;
+        }
+        .ig-username {
+            font-weight: 600;
+        }
+        .ig-media-container {
+            width: 100%;
+            background-color: #efefef;
+            position: relative;
+        }
+        .aspect-ratio-4-5 { aspect-ratio: 4 / 5; }
+        .aspect-ratio-9-16 { aspect-ratio: 9 / 16; }
+
+        .ig-media-container .swiper, .ig-media-container .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .ig-media-container .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .ig-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .ig-media-container .swiper-button-next,
+        .ig-media-container .swiper-button-prev {
+            color: #fff;
+            background-color: rgba(0,0,0,0.3);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+        }
+        .ig-media-container .swiper-button-next:after,
+        .ig-media-container .swiper-button-prev:after {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .ig-media-container .swiper-pagination-bullet {
+            background: #fff;
+            opacity: 0.6;
+        }
+        .ig-media-container .swiper-pagination-bullet-active {
+            opacity: 1;
+        }
+        .ig-post-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+            fill: #fff;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+        }
+        .ig-footer {
+            padding: 0 12px;
+        }
+        .ig-actions {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+        }
+        .ig-actions svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+        }
+        .ig-actions .ig-bookmark {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        .ig-likes {
+            font-weight: 600;
+            padding: 0 0 4px;
+        }
+        .ig-caption {
+            padding-bottom: 4px;
+        }
+        .ig-caption .ig-username {
+             margin-right: 4px;
+        }
+        .ig-comments {
+            color: #8e8e8e;
+            padding-bottom: 8px;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-700">成果報告</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-600 hover:text-blue-500 transition">頁首</a>
+                <a href="#overview" class="text-gray-600 hover:text-blue-500 transition">專案概述</a>
+                <a href="#strategy" class="text-gray-600 hover:text-blue-500 transition">策略與執行</a>
+                <a href="#growth-trends" class="text-gray-600 hover:text-blue-500 transition">成長趨勢</a>
+                <a href="#results" class="text-gray-600 hover:text-blue-500 transition">成果比較</a>
+                <a href="#insights" class="text-gray-600 hover:text-blue-500 transition">洞察與分析</a>
+                <a href="#reflection" class="text-gray-600 hover:text-blue-500 transition">學習與反思</a>
+                <a href="#future" class="text-gray-600 hover:text-blue-500 transition">建議</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 md:p-8">
+
+        <!-- Section: Home / Title -->
+        <section id="home" class="text-center py-20 bg-white rounded-2xl shadow-lg mb-12">
+            <div class="max-w-4xl mx-auto px-4">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4" contenteditable="true">上海商銀社群行銷成果報告</h1>
+                <h2 class="text-xl md:text-2xl text-gray-600 mb-8" contenteditable="true">數位行銷實習生 洪翊茹</h2>
+                <p class="text-md md:text-lg text-gray-500 leading-relaxed" contenteditable="true">
+                    這兩個月負責Instagram與Facebook社群媒體的內容企劃、文案撰寫，<br>致力於提升品牌社群能見度與粉絲互動率。
+                </p>
+            </div>
+        </section>
+
+        <!-- Section: Project Overview -->
+        <section id="overview" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">專案概述</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3">背景分析</h3>
+                    <p class="text-gray-600 leading-relaxed" contenteditable="true">
+                        實習前，上海商銀的社群平台經營現狀為：<br>Facebook 粉絲數（約 5 萬）遠高於 Instagram（約 3 千），但兩者的互動率皆有成長空間。<br>發文內容多集中於銀行官方活動、產品優惠訊息，較少生活化或知識性的軟性內容，難以吸引年輕族群的關注與互動。
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3">專案目標</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-pink-500">Instagram</h4>
+                            <ul class="list-disc list-inside text-gray-600">
+                                <li>每月粉絲數成長 5%</li>
+                                <li>平均貼文觸及率提升至 10%</li>
+                                <li>平均貼文參與率增加 3%</li>
+                                <li>Reels 最高觀看數達 1000 次</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-blue-600">Facebook</h4>
+                            <ul class="list-disc list-inside text-gray-600">
+                                <li>平均貼文觸及率增加 3%</li>
+                                <li>平均互動數提升至 300</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Strategy & Execution -->
+        <section id="strategy" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">策略與執行</h2>
+            
+            <!-- Core Strategy -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-center">核心策略</h3>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 18.734V6a2 2 0 012-2h2.5M14 10V3m0 7l-2-2m2 2l-2 2"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">提升互動性</h4>
+                        <p class="text-gray-600" contenteditable="true">透過舉辦抽獎活動、在文末加入明確的 Call To Action（例如：留言分享、標記朋友），並積極回覆粉絲留言，增加粉絲的參與感與黏著度。</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <div class="flex justify-center mb-4">
+                           <svg class="w-16 h-16 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">內容多元化與趨勢結合</h4>
+                        <p class="text-gray-600" contenteditable="true">結合時下流行話題（如迷因、熱門影集）、節日主題，製作 Reels 短影音，增加貼文的趣味性與討論度，觸及更多潛在粉絲。</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-xl">
+                        <div class="flex justify-center mb-4">
+                            <svg class="w-16 h-16 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-2">知識型貼文</h4>
+                        <p class="text-gray-600" contenteditable="true">將生硬的金融知識（如信用卡優惠、投資理財）轉化為簡單易懂的圖文懶人包，以趣味、實用的方式傳遞產品資訊，建立專業形象。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Monthly Execution -->
+            <div>
+                <h3 class="text-2xl font-semibold mb-6 text-center">月份執行</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div id="calendar-july"></div>
+                    <div id="calendar-august"></div>
+                </div>
+                <!-- Modal for post details -->
+                <div id="post-modal" class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center p-4 z-50 hidden">
+                    <div class="bg-white rounded-lg max-w-4xl w-full relative max-h-[90vh] overflow-y-auto">
+                        <button id="close-modal" class="absolute top-2 right-2 bg-gray-200 rounded-full p-2 text-gray-800 hover:bg-gray-300 z-10">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                        <div id="modal-content" class="p-6 md:p-8"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- Section: Growth Trends -->
+        <section id="growth-trends" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">成長趨勢分析</h2>
+            <p class="text-sm text-gray-500 mb-8 text-center">提示：點擊下方表格中的數字即可編輯，上方的折線圖將會自動更新。</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Facebook Accounts -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 flex items-center">
+                            <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+                            <span>上海商業儲蓄銀行 pukii粉絲團</span>
+                        </h3>
+                        <div class="w-full h-80 mb-4"><canvas id="fbPukiiTrendChart"></canvas></div>
+                        <div class="overflow-x-auto">
+                            <table id="fbPukiiTrendTable" class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="border-b-2 p-2">日期</th>
+                                        <th class="border-b-2 p-2">粉絲數量</th>
+                                        <th class="border-b-2 p-2">觸及數</th>
+                                        <th class="border-b-2 p-2">互動數</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border-b p-2">7/30</td><td class="border-b p-2" contenteditable="true">50100</td><td class="border-b p-2" contenteditable="true">12000</td><td class="border-b p-2" contenteditable="true">624</td></tr>
+                                    <tr><td class="border-b p-2">8/14</td><td class="border-b p-2" contenteditable="true">50150</td><td class="border-b p-2" contenteditable="true">25000</td><td class="border-b p-2" contenteditable="true">620</td></tr>
+                                    <tr><td class="border-b p-2">8/25</td><td class="border-b p-2" contenteditable="true">50200</td><td class="border-b p-2" contenteditable="true">11000</td><td class="border-b p-2" contenteditable="true">690</td></tr>
+                                    <tr><td class="border-b p-2">8/27</td><td class="border-b p-2" contenteditable="true">50280</td><td class="border-b p-2" contenteditable="true">13000</td><td class="border-b p-2" contenteditable="true">1280</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-600 flex items-center">
+                            <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+                            <span>Cloud Bank數位小鎮</span>
+                        </h3>
+                        <div class="w-full h-80 mb-4"><canvas id="fbCloudBankTrendChart"></canvas></div>
+                        <div class="overflow-x-auto">
+                            <table id="fbCloudBankTrendTable" class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="border-b-2 p-2">日期</th>
+                                        <th class="border-b-2 p-2">粉絲數量</th>
+                                        <th class="border-b-2 p-2">觸及數</th>
+                                        <th class="border-b-2 p-2">互動數</th>
+                                        <th class="border-b-2 p-2">Reels觀看數</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border-b p-2">7/10</td><td class="border-b p-2" contenteditable="true">3050</td><td class="border-b p-2" contenteditable="true">15000</td><td class="border-b p-2" contenteditable="true">813</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">7/22</td><td class="border-b p-2" contenteditable="true">3100</td><td class="border-b p-2" contenteditable="true">22000</td><td class="border-b p-2" contenteditable="true">910</td><td class="border-b p-2" contenteditable="true">30000</td></tr>
+                                    <tr><td class="border-b p-2">7/28</td><td class="border-b p-2" contenteditable="true">3180</td><td class="border-b p-2" contenteditable="true">25000</td><td class="border-b p-2" contenteditable="true">504</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">8/20</td><td class="border-b p-2" contenteditable="true">3250</td><td class="border-b p-2" contenteditable="true">16000</td><td class="border-b p-2" contenteditable="true">1420</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">8/22</td><td class="border-b p-2" contenteditable="true">3550</td><td class="border-b p-2" contenteditable="true">40000</td><td class="border-b p-2" contenteditable="true">9700</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Instagram Accounts -->
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-pink-500 flex items-center">
+                            <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.795 2.013 10.148 2 12.315 2zm-1.161 1.545a3.22 3.22 0 01-2.1-1.122A3.22 3.22 0 016.035 3.5c-1.18.055-1.654.211-2.148.405a3.42 3.42 0 00-1.224 1.224c-.194.494-.35 1.022-.405 2.148-.055 1.18-.066 1.566-.066 3.73s.011 2.55.066 3.73c.055 1.126.211 1.654.405 2.148a3.42 3.42 0 001.224 1.224c.494.194 1.022.35 2.148.405 1.18.055 1.566.066 3.73.066s2.55-.011 3.73-.066c1.126-.055 1.654-.211 2.148-.405a3.42 3.42 0 001.224-1.224c.194-.494.35-1.022.405-2.148.055-1.18.066-1.566.066-3.73s-.011-2.55-.066-3.73c-.055-1.126-.211-1.654-.405-2.148a3.42 3.42 0 00-1.224-1.224c-.494-.194-1.022-.35-2.148-.405-1.18-.055-1.566-.066-3.73-.066s-2.55.011-3.73.066zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 1.545a3.61 3.61 0 110 7.22 3.61 3.61 0 010-7.22zM16.965 6.575a1.23 1.23 0 100 2.46 1.23 1.23 0 000-2.46z" clip-rule="evenodd"></path></svg>
+                            <span>scsb.tw</span>
+                        </h3>
+                        <div class="w-full h-80 mb-4"><canvas id="igScsbTrendChart"></canvas></div>
+                        <div class="overflow-x-auto">
+                            <table id="igScsbTrendTable" class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="border-b-2 p-2">日期</th>
+                                        <th class="border-b-2 p-2">粉絲數量</th>
+                                        <th class="border-b-2 p-2">觸及數</th>
+                                        <th class="border-b-2 p-2">按讚數</th>
+                                        <th class="border-b-2 p-2">留言數</th>
+                                        <th class="border-b-2 p-2">收藏數</th>
+                                        <th class="border-b-2 p-2">分享數</th>
+                                    </tr>
+                                </thead>
+                                 <tbody>
+                                    <tr><td class="border-b p-2">7/30</td><td class="border-b p-2" contenteditable="true">3100</td><td class="border-b p-2" contenteditable="true">12500</td><td class="border-b p-2" contenteditable="true">5</td><td class="border-b p-2" contenteditable="true">0</td><td class="border-b p-2" contenteditable="true">400</td><td class="border-b p-2" contenteditable="true">230</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">8/6</td><td class="border-b p-2" contenteditable="true">3150</td><td class="border-b p-2" contenteditable="true">18000</td><td class="border-b p-2" contenteditable="true">1200</td><td class="border-b p-2" contenteditable="true">88</td><td class="border-b p-2" contenteditable="true">500</td><td class="border-b p-2" contenteditable="true">150</td><td class="border-b p-2" contenteditable="true">25000</td></tr>
+                                    <tr><td class="border-b p-2">8/14</td><td class="border-b p-2" contenteditable="true">3200</td><td class="border-b p-2" contenteditable="true">22000</td><td class="border-b p-2" contenteditable="true">9</td><td class="border-b p-2" contenteditable="true">0</td><td class="border-b p-2" contenteditable="true">150</td><td class="border-b p-2" contenteditable="true">310</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">8/25</td><td class="border-b p-2" contenteditable="true">3280</td><td class="border-b p-2" contenteditable="true">15000</td><td class="border-b p-2" contenteditable="true">131</td><td class="border-b p-2" contenteditable="true">188</td><td class="border-b p-2" contenteditable="true">500</td><td class="border-b p-2" contenteditable="true">250</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">8/27</td><td class="border-b p-2" contenteditable="true">3350</td><td class="border-b p-2" contenteditable="true">13000</td><td class="border-b p-2" contenteditable="true">800</td><td class="border-b p-2" contenteditable="true">55</td><td class="border-b p-2" contenteditable="true">450</td><td class="border-b p-2" contenteditable="true">380</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-pink-500 flex items-center">
+                             <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.795 2.013 10.148 2 12.315 2zm-1.161 1.545a3.22 3.22 0 01-2.1-1.122A3.22 3.22 0 016.035 3.5c-1.18.055-1.654.211-2.148.405a3.42 3.42 0 00-1.224 1.224c-.194.494-.35 1.022-.405 2.148-.055 1.18-.066 1.566-.066 3.73s.011 2.55.066 3.73c.055 1.126.211 1.654.405 2.148a3.42 3.42 0 001.224 1.224c.494.194 1.022.35 2.148.405 1.18.055 1.566.066 3.73.066s2.55-.011 3.73-.066c1.126-.055 1.654-.211 2.148-.405a3.42 3.42 0 001.224-1.224c.194-.494.35-1.022.405-2.148.055-1.18.066-1.566.066-3.73s-.011-2.55-.066-3.73c-.055-1.126-.211-1.654-.405-2.148a3.42 3.42 0 00-1.224-1.224c-.494-.194-1.022-.35-2.148-.405-1.18-.055-1.566-.066-3.73-.066s-2.55.011-3.73.066zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 1.545a3.61 3.61 0 110 7.22 3.61 3.61 0 010-7.22zM16.965 6.575a1.23 1.23 0 100 2.46 1.23 1.23 0 000-2.46z" clip-rule="evenodd"></path></svg>
+                            <span>cloudbank.tw</span>
+                        </h3>
+                        <div class="w-full h-80 mb-4"><canvas id="igCloudBankTrendChart"></canvas></div>
+                        <div class="overflow-x-auto">
+                            <table id="igCloudBankTrendTable" class="w-full text-left border-collapse text-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="border-b-2 p-2">日期</th>
+                                        <th class="border-b-2 p-2">粉絲數量</th>
+                                        <th class="border-b-2 p-2">觸及數</th>
+                                        <th class="border-b-2 p-2">按讚數</th>
+                                        <th class="border-b-2 p-2">留言數</th>
+                                        <th class="border-b-2 p-2">收藏數</th>
+                                        <th class="border-b-2 p-2">分享數</th>
+                                        <th class="border-b-2 p-2">Reels觀看數</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border-b p-2">7/10</td><td class="border-b p-2" contenteditable="true">3100</td><td class="border-b p-2" contenteditable="true">12500</td><td class="border-b p-2" contenteditable="true">5</td><td class="border-b p-2" contenteditable="true">0</td><td class="border-b p-2" contenteditable="true">400</td><td class="border-b p-2" contenteditable="true">230</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">7/22</td><td class="border-b p-2" contenteditable="true">3150</td><td class="border-b p-2" contenteditable="true">18000</td><td class="border-b p-2" contenteditable="true">1200</td><td class="border-b p-2" contenteditable="true">88</td><td class="border-b p-2" contenteditable="true">500</td><td class="border-b p-2" contenteditable="true">150</td><td class="border-b p-2" contenteditable="true">25000</td></tr>
+                                    <tr><td class="border-b p-2">7/28</td><td class="border-b p-2" contenteditable="true">3200</td><td class="border-b p-2" contenteditable="true">22000</td><td class="border-b p-2" contenteditable="true">9</td><td class="border-b p-2" contenteditable="true">0</td><td class="border-b p-2" contenteditable="true">150</td><td class="border-b p-2" contenteditable="true">310</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">8/6</td><td class="border-b p-2" contenteditable="true">3280</td><td class="border-b p-2" contenteditable="true">15000</td><td class="border-b p-2" contenteditable="true">131</td><td class="border-b p-2" contenteditable="true">188</td><td class="border-b p-2" contenteditable="true">500</td><td class="border-b p-2" contenteditable="true">250</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">8/20</td><td class="border-b p-2" contenteditable="true">3350</td><td class="border-b p-2" contenteditable="true">13000</td><td class="border-b p-2" contenteditable="true">800</td><td class="border-b p-2" contenteditable="true">55</td><td class="border-b p-2" contenteditable="true">450</td><td class="border-b p-2" contenteditable="true">380</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                    <tr><td class="border-b p-2">8/22</td><td class="border-b p-2" contenteditable="true">3650</td><td class="border-b p-2" contenteditable="true">35000</td><td class="border-b p-2" contenteditable="true">4500</td><td class="border-b p-2" contenteditable="true">2800</td><td class="border-b p-2" contenteditable="true">1500</td><td class="border-b p-2" contenteditable="true">800</td><td class="border-b p-2" contenteditable="true">0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section: Results & Analysis -->
+        <section id="results" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">成果數據與分析</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- FB Pukii -->
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-600 flex items-center">
+    <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+    <span>上海商業儲蓄銀行 pukii粉絲團</span></h3>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 text-center text-gray-700">成長率指標 (%)</h4>
+                        <div class="w-full h-48 mb-4"><canvas id="fbPukiiResultChartPercent"></canvas></div>
+                        <table id="fbPukiiResultTablePercent" class="w-full text-left border-collapse">
+                             <thead>
+                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                            </thead>
+                            <tbody>
+                                 <tr><td class="border-b p-2">觸及率增加</td><td class="border-b p-2">3%</td><td contenteditable="true" class="border-b p-2">?%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mt-8 mb-2 text-center text-gray-700">數量指標</h4>
+                        <div class="w-full h-48 mb-4"><canvas id="fbPukiiResultChartCount"></canvas></div>
+                         <table id="fbPukiiResultTableCount" class="w-full text-left border-collapse">
+                            <thead>
+                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border-b p-2">平均互動數</td><td class="border-b p-2">300</td><td contenteditable="true" class="border-b p-2">?</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- FB CloudBank -->
+                 <div class="space-y-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-600 flex items-center">
+    <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>
+    <span>Cloud Bank數位小鎮</span></h3>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 text-center text-gray-700">成長率指標 (%)</h4>
+                        <div class="w-full h-48 mb-4"><canvas id="fbCloudBankResultChartPercent"></canvas></div>
+                        <table id="fbCloudBankResultTablePercent" class="w-full text-left border-collapse">
+                             <thead>
+                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                            </thead>
+                            <tbody>
+                                 <tr><td class="border-b p-2">觸及率增加</td><td class="border-b p-2">3%</td><td contenteditable="true" class="border-b p-2">?%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mt-8 mb-2 text-center text-gray-700">數量指標</h4>
+                        <div class="w-full h-48 mb-4"><canvas id="fbCloudBankResultChartCount"></canvas></div>
+                         <table id="fbCloudBankResultTableCount" class="w-full text-left border-collapse">
+                            <thead>
+                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border-b p-2">平均互動數</td><td class="border-b p-2">300</td><td contenteditable="true" class="border-b p-2">?</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- IG SCSB -->
+                <div class="space-y-8">
+                  <h3 class="text-2xl font-semibold mb-4 text-pink-500 flex items-center">
+    <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.795 2.013 10.148 2 12.315 2zm-1.161 1.545a3.22 3.22 0 01-2.1-1.122A3.22 3.22 0 016.035 3.5c-1.18.055-1.654.211-2.148.405a3.42 3.42 0 00-1.224 1.224c-.194.494-.35 1.022-.405 2.148-.055 1.18-.066 1.566-.066 3.73s.011 2.55.066 3.73c.055 1.126.211 1.654.405 2.148a3.42 3.42 0 001.224 1.224c.494.194 1.022.35 2.148.405 1.18.055 1.566.066 3.73.066s2.55-.011 3.73-.066c1.126-.055 1.654-.211 2.148-.405a3.42 3.42 0 001.224-1.224c.194-.494.35-1.022.405-2.148.055-1.18.066-1.566.066-3.73s-.011-2.55-.066-3.73c-.055-1.126-.211-1.654-.405-2.148a3.42 3.42 0 00-1.224-1.224c-.494-.194-1.022-.35-2.148-.405-1.18-.055-1.566-.066-3.73-.066s-2.55.011-3.73.066zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 1.545a3.61 3.61 0 110 7.22 3.61 3.61 0 010-7.22zM16.965 6.575a1.23 1.23 0 100 2.46 1.23 1.23 0 000-2.46z" clip-rule="evenodd"></path></svg>
+    <span>scsb.tw</span></h3>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 text-center text-gray-700">成長率指標 (%)</h4>
+                        <div class="w-full h-60 mb-4"><canvas id="igScsbResultChartPercent"></canvas></div>
+                        <table id="igScsbResultTablePercent" class="w-full text-left border-collapse">
+                            <thead>
+                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border-b p-2">粉絲數成長</td><td class="border-b p-2">10%</td><td contenteditable="true" class="border-b p-2">8.2%</td></tr>
+                                <tr><td class="border-b p-2">觸及率</td><td class="border-b p-2">10%</td><td contenteditable="true" class="border-b p-2">?%</td></tr>
+                                <tr><td class="border-b p-2">參與率</td><td class="border-b p-2">3%</td><td contenteditable="true" class="border-b p-2">2.98%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <div>
+                        <h4 class="text-lg font-semibold mt-8 mb-2 text-center text-gray-700">數量指標</h4>
+                        <div class="w-full h-48 mb-4"><canvas id="igScsbResultChartCount"></canvas></div>
+                        <table id="igScsbResultTableCount" class="w-full text-left border-collapse">
+                             <thead>
+                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border-b p-2">Reels 最高觀看數</td><td class="border-b p-2">1000</td><td contenteditable="true" class="border-b p-2">?</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- IG CloudBank -->
+                <div class="space-y-8">
+                    <h3 class="text-2xl font-semibold mb-4 text-pink-500 flex items-center">
+    <svg class="h-7 w-7 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.795 2.013 10.148 2 12.315 2zm-1.161 1.545a3.22 3.22 0 01-2.1-1.122A3.22 3.22 0 016.035 3.5c-1.18.055-1.654.211-2.148.405a3.42 3.42 0 00-1.224 1.224c-.194.494-.35 1.022-.405 2.148-.055 1.18-.066 1.566-.066 3.73s.011 2.55.066 3.73c.055 1.126.211 1.654.405 2.148a3.42 3.42 0 001.224 1.224c.494.194 1.022.35 2.148.405 1.18.055 1.566.066 3.73.066s2.55-.011 3.73-.066c1.126-.055 1.654-.211 2.148-.405a3.42 3.42 0 001.224-1.224c.194-.494.35-1.022.405-2.148.055-1.18.066-1.566.066-3.73s-.011-2.55-.066-3.73c-.055-1.126-.211-1.654-.405-2.148a3.42 3.42 0 00-1.224-1.224c-.494-.194-1.022-.35-2.148-.405-1.18-.055-1.566-.066-3.73-.066s-2.55.011-3.73.066zM12 6.845a5.155 5.155 0 100 10.31 5.155 5.155 0 000-10.31zm0 1.545a3.61 3.61 0 110 7.22 3.61 3.61 0 010-7.22zM16.965 6.575a1.23 1.23 0 100 2.46 1.23 1.23 0 000-2.46z" clip-rule="evenodd"></path></svg>
+    <span>cloudbank.tw</span></h3>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 text-center text-gray-700">成長率指標 (%)</h4>
+                        <div class="w-full h-60 mb-4"><canvas id="igCloudBankResultChartPercent"></canvas></div>
+                        <table id="igCloudBankResultTablePercent" class="w-full text-left border-collapse">
+                            <thead>
+                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border-b p-2">粉絲數成長</td><td class="border-b p-2">10%</td><td contenteditable="true" class="border-b p-2">43.6%</td></tr>
+                                <tr><td class="border-b p-2">觸及率</td><td class="border-b p-2">10%</td><td contenteditable="true" class="border-b p-2">?%</td></tr>
+                                <tr><td class="border-b p-2">參與率</td><td class="border-b p-2">3%</td><td contenteditable="true" class="border-b p-2">7.49%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <div>
+                        <h4 class="text-lg font-semibold mt-8 mb-2 text-center text-gray-700">數量指標</h4>
+                        <div class="w-full h-48 mb-4"><canvas id="igCloudBankResultChartCount"></canvas></div>
+                        <table id="igCloudBankResultTableCount" class="w-full text-left border-collapse">
+                             <thead>
+                                <tr><th class="border-b-2 p-2">指標</th><th class="border-b-2 p-2">目標</th><th class="border-b-2 p-2">成果</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border-b p-2">Reels 最高觀看數</td><td class="border-b p-2">1000</td><td contenteditable="true" class="border-b p-2">?</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Insights & Analysis -->
+        <section id="insights" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">洞察與分析</h2>
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3">貼文內容分析 (Content Analysis)</h3>
+                    <div contenteditable="true" class="text-gray-600 leading-relaxed space-y-2">
+                        <p><strong>主題與成效關聯性：</strong> 觀察數據可發現，結合熱門IP（如七月「小小兵」）與節慶（如八月「鬼門開」、「父親節」）的主題貼文，普遍獲得較高的互動與觸及。這顯示利用粉絲既有的文化連結與情感共鳴，是有效提升成效的策略。</p>
+                        <p><strong>內容形式成效：</strong> Reels短影音（如7/22、8/20）在觸及與觀看數上表現突出，特別是在Cloud Bank等年輕受眾為主的平台。而多圖文的懶人包形式（如7/10、8/25）則在收藏與分享數上表現優異，顯示其內容具備高實用價值。</p>
+                        <p><strong>文案與互動：</strong> 帶有抽獎誘因的貼文，能最直接地刺激留言數與互動率。趣味諧音梗也能有效提升品牌親和力與粉絲留言意願。</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3">受眾行為洞察 (Audience Behavior Insights)</h3>
+                     <div class="text-gray-600 leading-relaxed space-y-4">
+                        <div contenteditable="true" class="space-y-2">
+                            <p><strong>互動高峰時段：</strong> 數據顯示，粉絲互動高峰主要集中在平日晚間 20:00-22:00 以及週末下午時段。未來發文可優先選擇這些時段，以最大化初期曝光效益。</p>
+                            <p><strong>互動類型分析：</strong> Instagram粉絲更傾向於「收藏」知識型與實用型內容，顯示他們將平台作為資訊儲存的工具。Facebook粉絲則更樂於「分享」抽獎活動與優惠資訊，反映出其社群連結的特性。</p>
+                            <p><strong>受眾回饋：</strong> 在金融知識相關貼文（如信用卡、基金）下方，粉絲常提出更細節的產品問題，顯示受眾對理財知識有高度需求。這些問題可作為未來FAQ或深度內容企劃的靈感來源。</p>
+                        </div>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div>
+        <img src="https://i.postimg.cc/XYtpSycq/image.png" alt="粉絲活躍時段分析圖" class="rounded-lg shadow-md w-full">
+        <p class="text-center text-sm text-gray-500 mt-2">圖一：粉絲活躍時段分析圖</p>
+    </div>
+    <div>
+        <img src="https://i.postimg.cc/nz23PZbF/image.png" alt="發文時間分佈圖" class="rounded-lg shadow-md w-full">
+        <p class="text-center text-sm text-gray-500 mt-2">圖二：發文時間分佈圖</p>
+    </div>
+</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-3">趨勢結合分析 (Trend Integration Analysis)</h3>
+                     <div contenteditable="true" class="text-gray-600 leading-relaxed space-y-2">
+                        <p><strong>時事結合的影響：</strong> 結合「國際友誼日」(7/30) 並連結好友推薦任務的貼文，成功地將節日氛圍轉化為實際的行銷目標。而結合「鬼月」(8/22) 的數位平安符主題，則透過文化創意吸引了大量關注與討論，證明結合在地文化趨勢是有效的策略。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Learning & Reflection -->
+        <section id="reflection" class="mb-12 p-8 bg-white rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">學習與反思</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-2">學到的技能</h3>
+                    <ul contenteditable="true" class="list-disc list-inside text-gray-600 space-y-1">
+                        <li>社群內容企劃：學習轉化複雜的金融產品，結合時下議題與節慶，策劃出兼具專業與親和力的行銷內容</li>
+                        <li>文案撰寫與視覺設計：體會到金融文案的嚴謹性，並為符合版權規範，主動自學Canva獨立完成社群素材設計，確保內容的合規與視覺吸引力。</li>
+                        <li>數據洞察：透過追蹤與分析關鍵數據，我能評估行銷活動成效，並從中提煉出可行的優化方向。</li>
+                        <li>專案管理：在銀行嚴謹的多部門協作與審核流程中，我磨練出高效的時程管理與溝通能力，確保每一項專案都能順利推進並準時上線。</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-2">遇到的挑戰</h3>
+               <ul contenteditable="true" class="list-disc list-inside text-gray-600 leading-relaxed">
+                        <li>銀行內部組織龐大，一篇貼文從發想到最終發布，需要經過好幾個關卡的審核，流程非常長，這讓我對專案的時程管理感到非常焦慮。後來我改變了工作習慣，將內容規劃的時程大幅提前，並在每個環節都預留了緩衝時間。</li>
+                        <li>面對視覺素材需獨立製作的任務，在零電腦繪圖基礎下，我只能自學並借助AI輔助進行設計。這不僅讓我克服了技術門檻，更成功製作出多張社群素材。</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-2">個人成長</h3>
+                    <p contenteditable="true" class="text-gray-600 leading-relaxed">
+                        這次實習不僅讓我對數位行銷的流程有了全面的了解，更重要的是培養了我解決問題的能力。<br>從一開始對金融產品一無所知，到能夠獨立完成一個主題的內容企劃與執行，我學會了如何快速學習新知，並將其應用於實務中。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Future & Thanks -->
+        <section id="future" class="p-8 bg-white rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">建議</h2>
+            <div class="space-y-6">
+                 <div>
+                    <ul contenteditable="true" class="text-gray-600 leading-relaxed">
+                        一、深化粉絲互動
+                    </ul>
+                    <ul contenteditable="true" class="list-disc list-inside text-gray-600 leading-relaxed">
+                        <li>定期更新限時動態， 除了宣傳也可以用投票功能與粉絲互動。</li>
+                        <li>推出理財或防詐騙相關的快問快答，例如「以下哪個是常見的詐騙簡訊特徵？」，用遊戲化的方式傳遞重要資訊。</li>
+                    </ul>
+                     <ul contenteditable="true" class="text-gray-600 leading-relaxed">
+                        二、加強粉絲增長
+                    </ul>
+                    <ul contenteditable="true" class="list-disc list-inside text-gray-600 leading-relaxed">
+                        <li>持續舉辦抽獎活動，擴大社群媒體粉絲量。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center p-4 mt-12">
+        <p>&copy; 2025 洪翊茹. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- Post Data ---
+            const postData = {
+                '7-10': {
+                    type: 'image', 
+                    account: 'cloudbank.tw',
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAHV8DaB1IYUHQXfv-LmB8tVNxjkWZ5VcZQ&s',
+                    images: [ 
+                        'https://i.postimg.cc/MTgvYPYZ/710-10-png.png',
+                        'https://i.postimg.cc/brtWGTg2/2.png',
+                        'https://i.postimg.cc/fbyHtCTT/3.png',
+                        'https://i.postimg.cc/3RDn9wvs/4.png',
+                        'https://i.postimg.cc/sxdKLRPv/5.png',
+                        'https://i.postimg.cc/CMkcqzYD/6.png'
+                    ], 
+                    caption: '🍌小小兵出道🔟週年，童年回憶殺🍌還記得第一次被小小兵萌翻的瞬間嗎？這群黃色小可愛已經在大螢幕上陪伴我們整整十年了！🎁跟著小小兵的腳步，解鎖所有任務，把好禮通通帶回家',
+                    summary: '本篇貼文以 小小兵出道 10 週年 為主題，結合 上海商銀數位帳戶推廣，透過任務闖關形式介紹活動玩法：<br>主線任務：申辦 CB 數位帳戶副本任務：<br>消費滿額、APP 綁定、好友推薦 → 兌換/抽小小兵限量周邊<br>終極獎勵：完成全部任務即可抽大阪來回機票。<br>貼文核心在於：用 IP 熱度＋遊戲化任務，引導粉絲了解數位帳戶申辦流程並參與活動。',
+                    instagram: { likes: '5', comments: '0', performance: '觸及人數: 12,500 | 分享數: 230 | 收藏數: 400' },
+                    facebook: { likes: '13', comments: '0', shares: '2', performance: '觸及人數: 15,000 | 互動次數: 800' }
+                },
+                '7-22': {
+                    type: 'reel',
+                    account: 'cloudbank.tw',
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAHV8DaB1IYUHQXfv-LmB8tVNxjkWZ5VcZQ&s',
+                    image: 'https://i.postimg.cc/8zLHFCvc/2025-08-19-141029.png', // Poster image
+                    video: 'https://res.cloudinary.com/dwasgemqs/video/upload/v1755583580/0722%E6%93%81%E6%9C%89%E5%B0%8F%E5%B0%8F%E5%85%B5Debit%E5%8D%A1_%E4%BA%AB%E4%B8%8D%E5%AE%8C%E7%9A%84%E6%B6%88%E8%B2%BB%E9%A9%9A%E5%96%9C_-_Compressed_with_FlexClip_bpwjw1.mp4', 
+                    caption: '只要擁有數位帳戶+小小兵Debit卡，驚喜優惠享不完！😱💛🌟 限量小小兵週邊、甚至機票大獎等你抽！',
+                    summary: '小小兵Debit卡 + 數位帳戶的專屬優惠，透過限量週邊、抽獎與高利活存、刷卡回饋吸引年輕族群，核心訊息是「開卡方便、回饋多、驚喜不斷」，同時搭配熱門消費場景（LINE Pay、UberEats、Netflix 等）提升貼近度與實用性，整體語氣活潑、俏皮，符合小小兵萌系形象與數位銀行年輕化定位。',
+                    instagram: { likes: '1,200', comments: '88', performance: '觀看次數: 25,000 | 觸及人數: 18,000 | 分享數: 150' },
+                    facebook: { likes: '8', comments: '2', shares: '2', performance: '觀看次數: 30,000 | 觸及人數: 22,000' }
+                },
+                 '7-28': {
+                    type: 'image', 
+                    account: 'cloudbank.tw',
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAHV8DaB1IYUHQXfv-LmB8tVNxjkWZ5VcZQ&s',
+                    images: ['https://i.postimg.cc/C5DdrGvG/1.png','https://i.postimg.cc/k4SRZ5PK/2.png','https://i.postimg.cc/sDmQb8q6/3.png','https://i.postimg.cc/W4FdF43C/4.png'], 
+                    caption: '信用卡那麼多，到底怎麼選?？高回饋、可分期、聯名卡...面對琳瑯滿目的信用卡💳你是不是也跟我一樣，有選擇障礙呢？',
+                    summary: '本篇貼文以 「如何挑選信用卡」 為切入點，透過生活化提問（回饋、分期、聯名卡等）引發共鳴，並以「CB超人」角色帶出信用卡特色與差異化。內容核心在於：引導粉絲思考自身信用卡需求（回饋率、分期、卡面設計等）。以互動式 CTA（留言分享選卡重點）提升粉絲參與度。強化上海商銀信用卡在理財便利性與多元選擇上的品牌印象。',
+                    instagram: { likes: '9', comments: '0', performance: '觸及人數: 22,000 | 分享數: 310' }, 
+                    facebook: { likes: '4', comments: '0', shares: '0', performance: '觸及人數: 25,000 | 互動次數: 500' }
+                },
+                '7-30': {
+                    type: 'image',
+                    account: 'scsb.tw',
+                    avatar: 'https://www.scsb.com.tw/content/images/index_img/share/FB.jpg',
+                    images: ['https://i.postimg.cc/RCn30mMW/1.png',
+                    'https://i.postimg.cc/KYRqWfT3/2.png',
+                    'https://i.postimg.cc/zXGnpBKV/3.png',
+                    'https://i.postimg.cc/VNqrzQnx/4.png','https://i.postimg.cc/4ySnWJR9/5.png','https://i.postimg.cc/8zWsbQK7/6.png','https://i.postimg.cc/mryD03GR/7.png'],
+                    caption: '💬 一句問候，連結世界的每個角落。? 一份真心，讓財富之路更精彩。今年國際友誼日，上海商銀與你攜手，共同慶祝這份超越國界、文化與種族的珍貴情誼！🌐🤝',
+                    summary: '本篇貼文以「國際友誼日」為主題，透過友情與分享的意象，結合小小兵聯名活動，宣傳「邀請好友開立 CB 數位帳戶」任務，並以限量小小兵蕉友傘作為獎勵，核心在於強調友情連結與互動，同時推廣數位帳戶申辦。',
+                    instagram: { likes: '11', comments: '0', performance: '觸及人數: 9,800 | 連結點擊數: 550' },
+                    facebook: { likes: '19', comments: '5', shares: '0', performance: '觸及人數: 12,000 | 連結點擊數: 600' }
+                },
+                '8-6': [
+                    {
+                        type: 'image',
+                        account: 'cloudbank.tw',
+                        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAHV8DaB1IYUHQXfv-LmB8tVNxjkWZ5VcZQ&s',
+                        images: ['https://i.postimg.cc/RV7NcTJ9/1.png',
+                        'https://i.postimg.cc/fb8sc8N3/2.png',
+                        'https://i.postimg.cc/HnyCCH75/3.png',
+                        'https://i.postimg.cc/447K396v/4.png',
+                        'https://i.postimg.cc/6qn5fCcD/5.png',
+                        'https://i.postimg.cc/kMb4CdCf/6.png',
+                        'https://i.postimg.cc/fTQbTgTZ/7.png',
+                        'https://i.postimg.cc/y8VY0gZb/8.png',
+                        'https://i.postimg.cc/NfxQGsz7/9.png'],
+                        caption: '「小小兵冷知識」幫你的大腦冰鎮一下！🥶✅底下留言抽好禮🎁',
+                        summary: '本篇貼文以「小小兵冷知識」為趣味切入，搭配留言互動抽獎活動，宣傳 上海商銀 CB 數位帳戶全新小小兵 Debit 卡。透過知識問答與抽獎機制，提升粉絲參與度與品牌好感，同時引導關注數位帳戶新卡的上市資訊。',
+                        instagram: { likes: '131', comments: '188', performance: '觸及人數: 15,000 | 分享數: 250' }
+                    },
+                    {
+                        type: 'image',
+                        account: 'scsb.tw',
+                        avatar: 'https://www.scsb.com.tw/content/images/index_img/share/FB.jpg',
+                        images: ['https://i.postimg.cc/MGTHJ2PK/1.png',
+                        'https://i.postimg.cc/13CP6WP8/2.png',
+                        'https://i.postimg.cc/mgDWbQMB/3.png',
+                        'https://i.postimg.cc/bvSXnp35/4.png',
+                        'https://i.postimg.cc/Bvrrckzn/5.png',
+                        'https://i.postimg.cc/wvDSWFKc/6.png',
+                        'https://i.postimg.cc/BbsRRD4W/7.png',
+                        'https://i.postimg.cc/7YKjQfRc/8.png'],
+                        caption: '你家的超級英雄是哪種「他」？ 🎉底下留言抽好禮?',
+                        summary: '本篇貼文以「父親節」為主題，運用趣味諧音梗塑造爸爸如超級英雄的形象，邀請粉絲留言祝福爸爸並參加抽獎活動。核心在於結合節日溫馨氛圍與互動機制，提升粉絲參與度與品牌親和力。',
+                        instagram: { likes: '93', comments: '106', performance: '觸及人數: 11,000 | 收藏數: 350' }
+                    }
+                ],
+                '8-14': {
+                    type: 'image',
+                    account: 'scsb.tw',
+                    avatar: 'https://www.scsb.com.tw/content/images/index_img/share/FB.jpg',
+                    images: ['https://i.postimg.cc/yxFYyVdn/1.jpg','https://i.postimg.cc/W375FyLK/2.png','https://i.postimg.cc/9McphBRB/3.jpg','https://i.postimg.cc/k4wyXtWP/4.png','https://i.postimg.cc/6q3f75h2/5.png','https://i.postimg.cc/T14qnMkk/6.png'],
+                    caption: '投資聰明選！一般理財 vs. 智能理財✨現代人生活步調快，常常因為沒時間研究、沒頭緒而錯過理財的機會嗎？🤔別擔心！上海商銀 #GoRich智能理財 ，就是你最佳的財富管家！',
+                    summary: '本篇貼文以「一般理財 vs. 智能理財」為對比切入，重點介紹 上海商銀 GoRich 智能理財服務，凸顯其低門檻、免多項手續費、客製化投資組合建議與自動再平衡功能。核心在於強調 智慧、專業、便利 的理財解決方案，並引導粉絲進一步了解與開通服務。',
+                    instagram: { likes: '9', comments: '0', performance: '觸及人數: 20,000 | 分享數: 450' },
+                    facebook: { likes: '18', comments: '2', shares: '0', performance: '觸及人數: 25,000 | 互動次數: 600' }
+                },
+                '8-20': {
+                    type: 'reel',
+                    account: 'cloudbank.tw',
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAHV8DaB1IYUHQXfv-LmB8tVNxjkWZ5VcZQ&s',
+                    image: 'https://i.postimg.cc/Gm3hvn1J/1.png',
+                    video: 'https://res.cloudinary.com/dwasgemqs/video/upload/v1755583952/copy_2C2DCE97-3959-4688-B56B-9431D4A095B3_eorxeb.mov',
+                    caption: '💰 數位券是什麼？如何領取？帶你一次看懂！🤔什麼是數位券？🎟️數位券是政府攜手金融機構與企業，整合 TWQR 支付標準後推出的多元數位票券，只要打開台灣pay，就能輕鬆登記、領取並使用，簡單又方便！',
+                    summary: '以「數位券」為主題，說明其概念（政府與金融機構合作推出的數位票券，支援台灣Pay），並提供 領取流程教學，強調只要透過台灣Pay 綁定上海銀行即可快速領券。核心在於 降低用戶操作門檻、提升數位券使用率，同時帶出上海銀行在數位支付服務中的角色。',
+                    instagram: { likes: '800', comments: '55', performance: '觸及人數: 13,000 | 分享數: 380' },
+                    facebook: { likes: '950', comments: '70', shares: '420', performance: '觸及人數: 16,000 | 互動次數: 1500' }
+                },
+                '8-22': {
+                    type: 'image',
+                    account: 'cloudbank.tw',
+                    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiAHV8DaB1IYUHQXfv-LmB8tVNxjkWZ5VcZQ&s',
+                    images: ['https://i.postimg.cc/Ss9ymyWq/1.png','https://i.postimg.cc/KvCDzb3j/2.png','https://i.postimg.cc/NFSm58MS/3.png','https://i.postimg.cc/WpHMWVn8/4.png','https://i.postimg.cc/t40Fbz8V/5.png','https://i.postimg.cc/bvpbDwyy/6.png','https://i.postimg.cc/HnytmW4Q/7.png'],
+                    caption: '👻 鬼門開，財庫也要顧！上海商銀數位平安符，守護您的每一分財富！ 今年鬼月上海商銀為您獻上最現代的「數位金融平安符」，讓科技成為您財富的堅實後盾，助您諸事順利，財源廣進！',
+                    summary: '以「鬼月 × 數位金融平安符」為創意主題，透過五大神符（APP、匯率通知、帳務預警、投資理財、高利存款）巧妙連結數位金融服務，營造守護財富、安心理財的形象。核心在於 以節慶氛圍結合產品特色，提升品牌親和力與數位服務曝光度。',
+                    instagram: { likes: '4,500', comments: '2,800', performance: '觸及人數: 35,000 | 新增粉絲: 300' },
+                    facebook: { likes: '5,000', comments: '3,200', shares: '1,500', performance: '觸及人數: 40,000 | 新增粉絲: 450' }
+                },
+                '8-25': {
+                    type: 'image',
+                    account: 'scsb.tw',
+                    avatar: 'https://www.scsb.com.tw/content/images/index_img/share/FB.jpg',
+                    images: ['https://i.postimg.cc/J0cMBP62/1.png','https://i.postimg.cc/RCkRRf4G/2.png','https://i.postimg.cc/cJLMHBB1/3.png','https://i.postimg.cc/259dBL0Q/4.png','https://i.postimg.cc/PxBmSssN/5.png','https://i.postimg.cc/5yL8G7bg/6.png'],
+                    caption: '搞懂基金，理財不迷路！✨ 共同基金 vs. ETF，教你快速做選擇！',
+                    summary: '以「共同基金 vs. ETF」為主題，透過比較表格幫助投資新手快速理解兩者差異，並引導用戶判斷自身投資屬性。內容同時帶出上海商銀「理財妙管家」服務與基金申購優惠，<br>核心在於 降低理財門檻、凸顯專業輔助工具、推廣基金投資服務。',
+                    instagram: { likes: '550', comments: '30', performance: '觸及人數: 9,500 | 連結點擊數: 480' },
+                    facebook: { likes: '600', comments: '40', shares: '50', performance: '觸及人數: 11,000 | 連結點擊數: 520' }
+                },
+                '8-27': {
+                    type: 'reel',
+                    account: 'scsb.tw',
+                    avatar: 'https://www.scsb.com.tw/content/images/index_img/share/FB.jpg',
+                    image: 'https://i.postimg.cc/sDsVRC1d/2.jpg',
+                    video: 'https://res.cloudinary.com/dwasgemqs/video/upload/v1755583925/0827%E6%96%B0%E7%B6%B2%E9%8A%80_GO_%E8%B1%AA%E7%A6%AE%E6%8A%BD%E5%9B%9E%E5%AE%B6_-_Compressed_with_FlexClip_fk9jvw.mp4',
+                    caption: '新網銀 GO！豪禮抽回家🎁',
+                    summary: '以「新網銀」上線為主題，強調其快速登入（QR Code 掃碼）、多元金融功能（轉帳、換匯、定存、基金、貸款）及個人化介面優勢，同時設計抽獎活動（7-11 禮券、無線充電座）吸引用戶登入與操作。<br>核心在於 推廣新網銀使用率，並透過任務式抽獎提升體驗與黏著度。',
+                    instagram: { likes: '950', comments: '150', performance: '觸及人數: 10,500 | 留言數: 150' },
+                    facebook: { likes: '1100', comments: '180', shares: '80', performance: '觸及人數: 13,000 | 互動次數: 1400' }
+                },
+            };
+
+            // --- Calendar Generation ---
+            const highlightedDates = {
+                7: [10, 22, 28, 30],
+                8: [6, 14, 20, 22, 25, 27]
+            };
+
+            function createCalendar(containerId, year, month) {
+                const container = document.getElementById(containerId);
+                const monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+                const daysOfWeek = ['日', '一', '二', '三', '四', '五', '六'];
+                
+                const firstDay = new Date(year, month - 1, 1).getDay();
+                const daysInMonth = new Date(year, month, 0).getDate();
+
+                let html = `<div class="p-4 bg-gray-50 rounded-lg">`;
+                html += `<h4 class="text-xl font-bold text-center mb-4">${year} / ${monthNames[month - 1]}</h4>`;
+                html += `<div class="calendar-grid text-sm">`;
+                
+                daysOfWeek.forEach(day => { html += `<div class="font-semibold text-center text-gray-500">${day}</div>`; });
+                for (let i = 0; i < firstDay; i++) { html += `<div></div>`; }
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const isHighlighted = highlightedDates[month] && highlightedDates[month].includes(day);
+                    const classes = isHighlighted ? 'calendar-day highlighted-date' : 'calendar-day';
+                    const dataAttr = isHighlighted ? `data-postid="${month}-${day}"` : '';
+                    html += `<div class="${classes}" ${dataAttr}>${day}</div>`;
+                }
+                html += `</div></div>`;
+                container.innerHTML = html;
+            }
+
+            createCalendar('calendar-july', 2025, 7);
+            createCalendar('calendar-august', 2025, 8);
+
+            // --- Modal Logic ---
+            const modal = document.getElementById('post-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const modalContent = document.getElementById('modal-content');
+
+            function createPostHtml(post, titleSuffix = '') {
+                const facebookPerformanceHtml = post.facebook ? `
+                    <div>
+                        <h4 class="text-lg font-semibold mb-2 text-blue-600">Facebook 成效</h4>
+                        <p contenteditable="true" class="text-gray-600 leading-relaxed min-h-[40px]">按讚數: ${post.facebook.likes} | 留言數: ${post.facebook.comments} | 分享數: ${post.facebook.shares}</p>
+                        <p contenteditable="true" class="text-gray-600 leading-relaxed min-h-[40px]">${post.facebook.performance}</p>
+                    </div>
+                ` : '';
+
+                let mediaHtml = '';
+                let postIconHtml = '';
+                const aspectRatioClass = post.type === 'reel' ? 'aspect-ratio-9-16' : 'aspect-ratio-4-5';
+
+                if (post.type === 'reel') {
+                    mediaHtml = `<video class="ig-media" controls poster="${post.image}" src="${post.video}"></video>`;
+                    postIconHtml = `<svg class="ig-post-icon w-6 h-6" viewBox="0 0 24 24"><path d="M8 3l-1.5 4.5h11L16 3H8zm1.5 6h5l-1 3.5h-3L9.5 9zm-2 5.5l-1 3h10l-1-3h-8zM5 1.5A1.5 1.5 0 003.5 3v18A1.5 1.5 0 005 22.5h14a1.5 1.5 0 001.5-1.5V3A1.5 1.5 0 0019 1.5H5z"></path></svg>`;
+                } else {
+                    const slides = post.images.map(imgUrl => `<div class="swiper-slide"><img src="${imgUrl}" class="ig-media" onerror="this.onerror=null;this.src='https://placehold.co/1080x1350/ccc/999?text=Image+Not+Found';"></div>`).join('');
+                    mediaHtml = `
+                        <div class="swiper">
+                            <div class="swiper-wrapper">${slides}</div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>`;
+                    if (post.images.length > 1) {
+                        postIconHtml = `<svg class="ig-post-icon w-6 h-6" viewBox="0 0 24 24"><path d="M20.7 19.3V4.8a2.1 2.1 0 00-2.1-2.1H5.4a2.1 2.1 0 00-2.1 2.1v14.5a2.1 2.1 0 002.1 2.1h13.2a2.1 2.1 0 002.1-2.1zM12 4.1h4.2a.8.8 0 01.8.8v4.2a.8.8 0 01-.8.8H12a.8.8 0 01-.8-.8V4.9a.8.8 0 01.8-.8zm0 11.7a3.5 3.5 0 110-7 3.5 3.5 0 010 7z"></path></svg>`;
+                    }
+                }
+
+                return `
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-start">
+                        <div class="md:col-span-2 flex justify-center">
+                            <div class="ig-mockup">
+                                <div class="ig-header">
+                                    <img src="${post.avatar}" alt="Account Avatar" class="ig-avatar">
+                                    <div contenteditable="true" class="ig-username">${post.account}</div>
+                                </div>
+                                <div class="ig-media-container ${aspectRatioClass}">
+                                    ${postIconHtml}
+                                    ${mediaHtml}
+                                </div>
+                                <div class="ig-footer">
+                                    <div class="ig-actions">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                                        <svg class="ig-bookmark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
+                                    </div>
+                                    <div class="ig-likes"><span contenteditable="true">${post.instagram.likes}</span> 個讚</div>
+                                    <div class="ig-caption">
+                                        <span contenteditable="true" class="ig-username">${post.account}</span>
+                                        <span contenteditable="true">${post.caption}</span>
+                                    </div>
+                                    <div class="ig-comments">查看全部 <span contenteditable="true">${post.instagram.comments}</span> 則留言</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-3 space-y-4">
+                            <div>
+                                <h4 class="text-xl font-semibold mb-2 text-gray-700">貼文摘要 ${titleSuffix}</h4>
+                                <p contenteditable="true" class="text-gray-600 leading-relaxed min-h-[80px]">${post.summary}</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold mb-2 text-pink-500">Instagram 成效</h4>
+                                <p contenteditable="true" class="text-gray-600 leading-relaxed min-h-[60px]">${post.instagram.performance}</p>
+                            </div>
+                            ${facebookPerformanceHtml}
+                        </div>
+                    </div>
+                `;
+            }
+
+            document.querySelectorAll('.highlighted-date').forEach(dateEl => {
+                dateEl.addEventListener('click', () => {
+                    const postId = dateEl.dataset.postid;
+                    const data = postData[postId];
+                    if (data) {
+                        let contentHtml = '';
+                        if (Array.isArray(data)) {
+                            data.forEach((post, index) => {
+                                contentHtml += createPostHtml(post, `(${index + 1})`);
+                                if (index < data.length - 1) {
+                                    contentHtml += `<hr class="my-8">`;
+                                }
+                            });
+                        } else {
+                            contentHtml = createPostHtml(data);
+                        }
+                        modalContent.innerHTML = contentHtml;
+                        modal.classList.remove('hidden');
+                        
+                        // Initialize Swiper after modal content is loaded
+                        const swiperElements = modalContent.querySelectorAll('.swiper');
+                        swiperElements.forEach(swiperEl => {
+                            const nextEl = swiperEl.querySelector('.swiper-button-next');
+                            const prevEl = swiperEl.querySelector('.swiper-button-prev');
+                            const paginationEl = swiperEl.querySelector('.swiper-pagination');
+
+                            new Swiper(swiperEl, {
+                                loop: false,
+                                pagination: { 
+                                    el: paginationEl, 
+                                    clickable: true 
+                                },
+                                navigation: { 
+                                    nextEl: nextEl, 
+                                    prevEl: prevEl 
+                                },
+                            });
+                        });
+                    }
+                });
+            });
+
+            closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+            
+            // --- Chart.js Logic ---
+            const chartConfig = {
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) {
+                                        if (context.chart.canvas.id.includes('Percent')) {
+                                             label += context.parsed.y + '%';
+                                        } else {
+                                             label += context.parsed.y;
+                                        }
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: { y: { beginAtZero: true } }
+                },
+            };
+
+            function getDataFromTable(tableId) {
+                const table = document.getElementById(tableId);
+                const labels = [], targetData = [], resultData = [];
+                table.querySelectorAll('tbody tr').forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    labels.push(cells[0].innerText);
+                    targetData.push(parseFloat(cells[1].innerText) || 0);
+                    resultData.push(parseFloat(cells[2].innerText) || 0);
+                });
+                return { labels, targetData, resultData };
+            }
+            
+            const charts = {};
+            function initBarChart(canvasId, tableId, color) {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return; // Exit if canvas not found
+                const ctx = canvas.getContext('2d');
+                const initialData = getDataFromTable(tableId);
+                charts[canvasId] = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: initialData.labels,
+                        datasets: [
+                            { label: '目標', data: initialData.targetData, backgroundColor: `rgba(${color}, 0.4)`, borderColor: `rgba(${color}, 1)`, borderWidth: 1 },
+                            { label: '成果', data: initialData.resultData, backgroundColor: `rgba(${color}, 0.8)`, borderColor: `rgba(${color}, 1)`, borderWidth: 1 }
+                        ]
+                    },
+                    options: chartConfig.options
+                });
+                document.getElementById(tableId).addEventListener('input', () => {
+                    const { labels, targetData, resultData } = getDataFromTable(tableId);
+                    const chart = charts[canvasId];
+                    chart.data.labels = labels;
+                    chart.data.datasets[0].data = targetData;
+                    chart.data.datasets[1].data = resultData;
+                    chart.update();
+                });
+            }
+
+            function initTrendChart(canvasId, tableId, datasetConfigs) {
+                const table = document.getElementById(tableId);
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                
+                function getDataForTrendChart() {
+                    const rows = table.querySelectorAll('tbody tr');
+                    const labels = [];
+                    const datasetsData = Array.from({ length: datasetConfigs.length }, () => []);
+                    
+                    rows.forEach(row => {
+                        const cells = row.querySelectorAll('td');
+                        labels.push(cells[0].innerText);
+                        for (let i = 0; i < datasetConfigs.length; i++) {
+                            datasetsData[i].push(parseFloat(cells[i + 1].innerText) || 0);
+                        }
+                    });
+                    return { labels, datasetsData };
+                }
+
+                const initialData = getDataForTrendChart();
+                const chartDatasets = datasetConfigs.map((config, index) => ({
+                    label: config.label,
+                    data: initialData.datasetsData[index],
+                    borderColor: config.color,
+                    backgroundColor: config.color.replace(')', ', 0.5)').replace('rgb', 'rgba'),
+                    fill: false,
+                    tension: 0.1
+                }));
+
+                const trendChart = new Chart(ctx, {
+                    type: 'line',
+                    data: { labels: initialData.labels, datasets: chartDatasets },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } },
+                        scales: { y: { beginAtZero: true } }
+                    }
+                });
+
+                table.addEventListener('input', () => {
+                    const { labels, datasetsData } = getDataForTrendChart();
+                    trendChart.data.labels = labels;
+                    datasetsData.forEach((data, index) => {
+                        trendChart.data.datasets[index].data = data;
+                    });
+                    trendChart.update();
+                });
+            }
+
+            function populateTrendTables() {
+                const accountPostDates = {
+                    fbPukii: ['7/30', '8/14', '8/25', '8/27'],
+                    fbCloudBank: ['7/10', '7/22', '7/28', '8/20', '8/22'],
+                    igScsb: ['7/30', '8/6', '8/14', '8/25', '8/27'],
+                    igCloudBank: ['7/10', '7/22', '7/28', '8/6', '8/20', '8/22']
+                };
+
+                const tables = {
+                    'fbPukiiTrendTable': { dates: accountPostDates.fbPukii, placeholders: ['50000', '15000', '800'] },
+                    'fbCloudBankTrendTable': { dates: accountPostDates.fbCloudBank, placeholders: ['3000', '18000', '900', '30000'] },
+                    'igScsbTrendTable': { dates: accountPostDates.igScsb, placeholders: ['3200', '10000', '950', '150', '350', '80'] },
+                    'igCloudBankTrendTable': { dates: accountPostDates.igCloudBank, placeholders: ['3100', '12000', '1200', '88', '400', '150', '25000'] }
+                };
+
+                for (const tableId in tables) {
+                    const tbody = document.getElementById(tableId).querySelector('tbody');
+                    let html = '';
+                    tables[tableId].dates.forEach(date => {
+                        html += `<tr><td class="border-b p-2">${date}</td>`;
+                        tables[tableId].placeholders.forEach(placeholder => {
+                            html += `<td class="border-b p-2" contenteditable="true">${Math.round(parseInt(placeholder) * (0.8 + Math.random() * 0.4))}</td>`;
+                        });
+                        html += `</tr>`;
+                    });
+                    tbody.innerHTML = html;
+                }
+            }
+            
+            populateTrendTables();
+
+            // Init Result Charts
+            initBarChart('fbPukiiResultChartPercent', 'fbPukiiResultTablePercent', '59, 130, 246');
+            initBarChart('fbPukiiResultChartCount', 'fbPukiiResultTableCount', '59, 130, 246');
+            initBarChart('fbCloudBankResultChartPercent', 'fbCloudBankResultTablePercent', '59, 130, 246');
+            initBarChart('fbCloudBankResultChartCount', 'fbCloudBankResultTableCount', '59, 130, 246');
+            initBarChart('igScsbResultChartPercent', 'igScsbResultTablePercent', '236, 72, 153');
+            initBarChart('igScsbResultChartCount', 'igScsbResultTableCount', '236, 72, 153');
+            initBarChart('igCloudBankResultChartPercent', 'igCloudBankResultTablePercent', '236, 72, 153');
+            initBarChart('igCloudBankResultChartCount', 'igCloudBankResultTableCount', '236, 72, 153');
+
+            // Init Trend Charts
+            initTrendChart('fbPukiiTrendChart', 'fbPukiiTrendTable', [
+                { label: '粉絲數量', color: 'rgb(59, 130, 246)' },
+                { label: '觸及數', color: 'rgb(34, 197, 94)' },
+                { label: '互動數', color: 'rgb(245, 158, 11)' }
+            ]);
+            initTrendChart('fbCloudBankTrendChart', 'fbCloudBankTrendTable', [
+                { label: '粉絲數量', color: 'rgb(59, 130, 246)' },
+                { label: '觸及數', color: 'rgb(34, 197, 94)' },
+                { label: '互動數', color: 'rgb(245, 158, 11)' },
+                { label: 'Reels觀看數', color: 'rgb(139, 92, 246)' }
+            ]);
+            initTrendChart('igScsbTrendChart', 'igScsbTrendTable', [
+                { label: '粉絲數量', color: 'rgb(219, 39, 119)' },
+                { label: '觸及數', color: 'rgb(244, 63, 94)' },
+                { label: '按讚數', color: 'rgb(234, 179, 8)' },
+                { label: '留言數', color: 'rgb(132, 204, 22)' },
+                { label: '收藏數', color: 'rgb(34, 211, 238)' },
+                { label: '分享數', color: 'rgb(124, 58, 237)' }
+            ]);
+            initTrendChart('igCloudBankTrendChart', 'igCloudBankTrendTable', [
+                { label: '粉絲數量', color: 'rgb(219, 39, 119)' },
+                { label: '觸及數', color: 'rgb(244, 63, 94)' },
+                { label: '按讚數', color: 'rgb(234, 179, 8)' },
+                { label: '留言數', color: 'rgb(132, 204, 22)' },
+                { label: '收藏數', color: 'rgb(34, 211, 238)' },
+                { label: '分享數', color: 'rgb(124, 58, 237)' },
+                { label: 'Reels觀看數', color: 'rgb(168, 85, 247)' }
+            ]);
+        });
+    </script>
+</body>
+</html>
